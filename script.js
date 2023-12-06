@@ -29,11 +29,11 @@ const snake = [
 
 //Desenha a cobra dentro do canvas
 const drawSnake = function() {
-    ctx.fillStyle = '#ddd'
+    ctx.fillStyle = '#A7EB72'
 
     snake.forEach(function(position, index) {
         if(index == snake.length -1) {
-            ctx.fillStyle = 'white';
+            ctx.fillStyle = '#87eb3b';
         }
 
         ctx.fillRect(position.x, position.y, size, size)
@@ -53,7 +53,7 @@ const numPosition = function() {
 const food = {
     x: numPosition(),
     y: numPosition(),
-    color: "yellow"
+    color: "red"
 }
 
 //Desenha a comida dentro do canvas
@@ -108,7 +108,6 @@ const collision = function() {
     const wallCollision = headSnake.x < 0 || headSnake.x > 290 || headSnake.y < 0 || headSnake.y > 290 
 
     if (wallCollision) {
-        alert("Você Perdeu!")
     }
 }
 
@@ -162,7 +161,7 @@ function playGame() {
         drawFood()
         checkEat()
         collision()
-    }, 150);
+    }, 100);
 }
 
 //Pausa o jogo
