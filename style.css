@@ -1,0 +1,71 @@
+@charset "UTF-8";
+
+:root{
+    --cor01:#f2d541;
+    --cor01A:#f2d541c0;
+    --cor02:#d92353;
+    --cor02A:#d92353a1;
+    --cor03:#60b6bf;
+    --cor03A:#60b6bf9d;
+    --cor04:#1d803a;
+    --cor04A:#1d803b6c;
+    --corBaseEscura:#212529;
+    --corBaseEscura2:#0e1011;
+    --corBaseClara:#788a9c48;
+    --corTexto:#d4d4d4;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--corBaseEscura2);
+}
+
+h1{
+    margin: 5px 0px;
+    color: var(--corTexto);
+}
+
+p{
+    color: var(--corTexto);
+}
+
+canvas{
+    border: 1px solid var(--corBaseClara);
+    background-color: var(--corBaseEscura);
+    width: 500px;
+    height: 500px;
+}
+
+button{
+    width: 300px;
+    height: 50px;
+    margin: 10px;
+    border: 1px dashed var(--corBaseClara);
+    border-radius: 5px;
+    background-color: transparent;
+    color: var(--corTexto);
+}
+
+button:hover{
+    cursor: pointer;
+    background-color: var(--corBaseEscura);
+    border: 1px solid var(--corBaseClara);
+    transition: border 0.3s, background-color 0.3s;
+}
+
+button:active{
+    transform: scale(0.9);
+    
+}
