@@ -1,6 +1,10 @@
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext("2d");
 
+const score = document.getElementById("score")
+
+const telaGameOver = document.querySelector(".game-over-menu")
+
 const size = 10
 
 //Desenha o grid dentro do canvas
@@ -22,7 +26,7 @@ const drawGrid = function() {
 }
 
 //Cobrinha inicial
-const snake = [
+let snake = [
     {x: 10, y:10},
     {x: 20, y:10},
 ]
@@ -93,7 +97,6 @@ const checkEat = function() {
 
         playAudio('audio/checkEat.mp3')
 
-        let score = document.getElementById('score');
         let scoreAtual = parseInt(score.innerHTML, 10);
         
         scoreAtual += 1;
@@ -104,11 +107,36 @@ const checkEat = function() {
 
 const collision = function() {
     const headSnake = snake[snake.length -1]
+    const canvasLimit = canvas.width - size
 
-    const wallCollision = headSnake.x < 0 || headSnake.x > 290 || headSnake.y < 0 || headSnake.y > 290 
+    const wallCollision = headSnake.x < 0 || headSnake.x > canvasLimit || headSnake.y < 0 || headSnake.y > canvasLimit 
 
-    if (wallCollision) {
+    const selfColision = snake.find((position, index) => {
+        return index < snake.length -2 && position.x == headSnake.x && position.y == headSnake.y
+    })
+
+    if (wallCollision || selfColision)  {
+        gameOver()
     }
+}
+
+const gameOver = function() {
+    direction = undefined
+
+    telaGameOver.style.display = "flex"
+
+    let scoreFinal = document.querySelector(".score-final")
+
+    scoreFinal.innerHTML = parseInt(score.innerHTML)
+
+    canvas.style.filter = "blur(2px)"
+
+    snake = [
+        {x: 0, y: 0},
+        {x: 0, y: 0},
+    ]
+
+    playAudio('audio/gameOver.mp3')
 }
 
 //Função para orientar as direções em que a cobra vai andar
@@ -131,6 +159,26 @@ const moveSnake = function () {
     }
 }
 
+const btnUp = document.getElementById("btnUp");
+btnUp.addEventListener("click", function() {
+    direction = 'up'
+})
+
+const btnRight = document.getElementById("btnRight");
+btnRight.addEventListener("click", function() {
+    direction = 'right'
+})
+
+const btnLeft = document.getElementById("btnLeft");
+btnLeft.addEventListener("click", function() {
+    direction = 'left'
+})
+
+const btnDown = document.getElementById("btnDown");
+btnDown.addEventListener("click", function() {
+    direction = 'down'
+})
+
 document.addEventListener('keydown', function(event) {
     if (event.key === 'ArrowUp' && direction !== 'down') {
         direction = 'up';
@@ -143,12 +191,7 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-//Inicia o jogo
-let btnPlayGame = document.getElementById('btnPlayGame');
-btnPlayGame.addEventListener('click', playGame)
 function playGame() {
-    btnPlayGame.style.display = 'none'
-    btnStopGame.style.display = 'block'
 
     playAudio('audio/play.mp3')
 
@@ -161,12 +204,36 @@ function playGame() {
         drawFood()
         checkEat()
         collision()
-    }, 100);
+    }, 150);
 }
+
+//Inicia o jogo
+let btnPlayGame = document.getElementById('btnPlayGame');
+btnPlayGame.addEventListener('click', function() {
+    playGame();
+
+    var menuInicial = document.querySelector(".tela-inicial")
+    menuInicial.style.display = "none"
+})
 
 //Pausa o jogo
 let btnStopGame = document.getElementById('btnStopGame');
 btnStopGame.addEventListener('click', function() {
     direction = ''
     playAudio('audio/stop.mp3')
+})
+
+//Jogar de novo
+let btnPlayAgain = document.getElementById("btnPlayAgain");
+btnPlayAgain.addEventListener("click", function() {
+
+    score.innerHTML = "0"
+
+    telaGameOver.style.display = "none"
+    canvas.style.filter = "none"
+
+    snake = [
+        {x: 10, y:10},
+        {x: 20, y:10},
+    ]
 })

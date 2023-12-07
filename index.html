@@ -7,17 +7,60 @@
 
     <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="img/snake.png" type="image/x-icon">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
 </head>
 <body>
-    <h1>Snake Game</h1>
-    <p>Score: <span id="score">0</span></p>
+    <nav>
+        <p>Score: <span id="score">0</span></p>
+        <button id="btnStopGame" type="button">
+            <span class="material-symbols-outlined">pause</span>
+        </button>
+    </nav>
+    
+    <div class="tela-inicial">
+        <h1>Snake Game</h1>
+        <button id="btnPlayGame">
+            <span class="material-symbols-outlined">play_circle</span>
+            Jogar
+        </button>
+    </div>
+
+    <div class="game-over-menu" style="display: none;">
+        <span class="game-over">Game Over</span>
+        <p>Score:<span class="score-final"></span></p>
+
+        <button id="btnPlayAgain">
+            <span class="material-symbols-outlined">play_arrow</span>
+            <span>Jogar Novamente</span>
+        </button>
+    </div>
 
     <canvas id="canvas" width="300px" height="300px"></canvas>
 
-    <div class="container-btns">
-        <button id="btnPlayGame" type="button">Começar jogo</button>
-        <button id="btnStopGame" type="button" style="display: none;">Pausar jogo</button>
-       
+    <div class="btn-direction">
+        <div>
+            <button id="btnUp">
+                <span class="material-symbols-outlined">arrow_drop_up</span>
+            </button>
+        </div>
+
+        <div>
+            <button id="btnLeft">
+                <span class="material-symbols-outlined">arrow_left</span>
+            </button>
+            
+            <button id="btnRight">
+                <span class="material-symbols-outlined">arrow_right</span>
+            </button>
+        </div>
+
+        <div>
+            <button id="btnDown">
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+            </button>
+        </div>
+
     </div>
 
     <script src="script.js"></script>

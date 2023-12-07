@@ -1,5 +1,7 @@
 @charset "UTF-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Bungee+Spice&display=swap');
+
 :root{
     --corBaseEscura:#212529;
     --corBaseEscura2:#0e1011;
@@ -11,6 +13,7 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
+    color: white;
 }
 
 
@@ -18,30 +21,47 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100vw;
     height: 100vh;
     background-color: var(--corBaseEscura2);
 }
 
-h1{
-    margin: 5px 0px;
-    color: var(--corTexto);
-    color: #87eb3b;
+nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 300px;
 }
 
-p{
+nav p {
     color: var(--corTexto);
+    justify-self: center;
+}
+
+nav button {
+    justify-self: flex-end;
+    border: none;
+    background: none;
+    width: 24px;
+    height: 24px;
 }
 
 canvas{
     border: 1px solid var(--corBaseClara);
     background-color: var(--corBaseEscura);
+    background-image: url(img/background.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
     width: 300px;
     height: 300px;
 }
 
-button{
+.container-btns button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 300px;
     height: 50px;
     margin: 10px;
@@ -51,14 +71,133 @@ button{
     color: var(--corTexto);
 }
 
-button:hover{
-    cursor: pointer;
-    background-color: var(--corBaseEscura);
-    border: 1px solid var(--corBaseClara);
-    transition: border 0.3s, background-color 0.3s;
-}
-
 button:active{
     transform: scale(0.9);
     
 }
+
+.tela-inicial {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+}
+
+.tela-inicial h1 {
+    font-family: 'Bungee Spice', sans-serif;
+    color: white;
+    animation: gameTitle 1s infinite ease-in-out;
+    text-align: center;
+    height: 50px;
+}
+
+@keyframes gameTitle {
+    0%, 100% {
+        font-size: 32px;
+    }
+
+    50% {
+        font-size: 31px;
+    }
+}
+
+.tela-inicial button {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    border: none;
+    background: none;
+    color: white;
+    cursor: pointer;
+}
+
+.tela-inicial button:hover {
+    transform: scale(1.1);
+    transition: transform 0.3s;
+}
+
+.tela-inicial button:active {
+    transform: scale(1.0);
+    transition: transform 0.3s;
+}
+
+.game-over-menu {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+    margin-top: 70px;
+}
+
+.game-over {
+    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 2rem;
+    font-family: 'Bungee Spice', sans-serif;
+}
+
+.score-final {
+    font-weight: 500;
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.game-over-menu button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0px 5px;
+    margin-top: 10px;
+    background: none;
+    cursor: pointer;
+}
+
+.game-over-menu button:hover {
+    background-color: white;
+    color: black;
+    transition: transform 0.3s;
+}
+
+.game-over-menu button span {
+    color: inherit;
+}
+
+.btn-direction {
+    display: flex;
+    flex-direction: column;
+    margin: 10px auto;
+}
+
+.btn-direction div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin: 1px 0px;
+}
+
+.btn-direction button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    background: none;
+    border: 1px solid white;
+    border-radius: 10px;
+    height: 40px;
+    width: 40px;
+    margin: 0px 26px;
+}
+
+.btn-direction button:active {
+    background-color: white;
+    color: var(--corBaseEscura)
+}
+
+.btn-direction button span {
+    color: inherit;
+}
+
