@@ -11,29 +11,28 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,1,0"/>
 </head>
 <body>
-    <nav>
-        <p>Score: <span id="score">0</span></p>
-        <button id="btnStopGame" type="button">
-            <span class="material-symbols-outlined">pause</span>
-        </button>
-    </nav>
+    <h2>Score: <span id="score">0</span></h2>
     
     <div class="tela-inicial">
         <h1>Snake Game</h1>
         <button id="btnPlayGame">
-            <span class="material-symbols-outlined">play_circle</span>
+            <span class="material-symbols-outlined">play_arrow</span>
             Jogar
         </button>
     </div>
 
     <div class="game-over-menu" style="display: none;">
-        <span class="game-over">Game Over</span>
-        <p>Score:<span class="score-final"></span></p>
 
-        <button id="btnPlayAgain">
-            <span class="material-symbols-outlined">play_arrow</span>
-            <span>Jogar Novamente</span>
-        </button>
+        <span class="game-over">Game Over</span>
+
+        <div>
+            <p>Score:<span class="score-final"></span></p>
+            <button id="btnPlayAgain">
+                <span class="material-symbols-outlined">play_arrow</span>
+                <span>Jogar Novamente</span>
+            </button>
+        </div>
+
     </div>
 
     <canvas id="canvas" width="300px" height="300px"></canvas>
@@ -49,7 +48,9 @@
             <button id="btnLeft">
                 <span class="material-symbols-outlined">arrow_left</span>
             </button>
-            
+            <button id="btnStopGame" type="button">
+                <span class="material-symbols-outlined">pause</span>
+            </button>
             <button id="btnRight">
                 <span class="material-symbols-outlined">arrow_right</span>
             </button>

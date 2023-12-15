@@ -21,6 +21,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     width: 100vw;
     height: 100vh;
     background-color: var(--corBaseEscura2);
@@ -73,7 +74,6 @@ canvas{
 
 button:active{
     transform: scale(0.9);
-    
 }
 
 .tela-inicial {
@@ -81,7 +81,10 @@ button:active{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 70px;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 208px;
+    gap: 100px;
 }
 
 .tela-inicial h1 {
@@ -94,21 +97,22 @@ button:active{
 
 @keyframes gameTitle {
     0%, 100% {
-        font-size: 32px;
-    }
-
+        transform: scale(1);
+      }
     50% {
-        font-size: 31px;
-    }
+        transform: scale(1.1);
+      }
 }
 
 .tela-inicial button {
     display: flex;
     align-items: center;
-    margin-top: 20px;
-    border: none;
+    justify-content: center;
+    border: 1px solid white;
+    border-radius: 10px;
+    padding: 0px 5px;
+    margin-bottom: 200px;
     background: none;
-    color: white;
     cursor: pointer;
 }
 
@@ -128,19 +132,33 @@ button:active{
     flex-direction: column;
     align-items: center;
     z-index: 1;
-    margin-top: 70px;
+    width: 300px;
+    height: 300px;
+    margin-bottom: 208px;
+    gap: 80px;
+}
+
+.game-over-menu > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .game-over {
-    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-weight: 700;
     font-size: 2rem;
     font-family: 'Bungee Spice', sans-serif;
+    animation: gameTitle 1s infinite ease-in-out;
+    height: 70px;
 }
 
 .score-final {
     font-weight: 500;
     font-size: 16px;
+    text-align: center;
     margin-left: 5px;
 }
 
@@ -151,7 +169,7 @@ button:active{
     border: 1px solid white;
     border-radius: 10px;
     padding: 0px 5px;
-    margin-top: 10px;
+    margin-bottom: 200px;
     background: none;
     cursor: pointer;
 }
@@ -189,7 +207,7 @@ button:active{
     border-radius: 10px;
     height: 70px;
     width: 70px;
-    margin: 0px 30px;
+    margin: 0px 1px;
 }
 
 .btn-direction button:active {
