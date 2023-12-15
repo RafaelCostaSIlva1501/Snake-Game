@@ -187,9 +187,9 @@ button:active{
     background: none;
     border: 1px solid white;
     border-radius: 10px;
-    height: 40px;
-    width: 40px;
-    margin: 0px 26px;
+    height: 70px;
+    width: 70px;
+    margin: 0px 30px;
 }
 
 .btn-direction button:active {
