@@ -59,8 +59,7 @@ header button:hover {
 }
 
 canvas {
-    width: 450px;
-    height: 350px;
+    width: 380px;
 }
 
 .canvas-border {
@@ -92,8 +91,8 @@ canvas {
     background: none;
     border: 2px ridge var(--corBaseClara);
     border-radius: 10px;
-    height: 70px;
-    width: 70px;
+    height: 65px;
+    width: 65px;
     margin: 0px 1px;
     color: var(--corTexto);
 }
