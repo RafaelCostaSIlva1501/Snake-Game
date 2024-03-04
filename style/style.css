@@ -118,8 +118,10 @@ menu {
     background-color: var(--corBaseEscura);
     border: 1px solid var(--corBaseClara);
     width: 95vw;
+    max-width: 500px;
     height: 95vh;
     padding: 10px;
+    z-index: 2;
 }
 
 .menuHeader {
@@ -150,7 +152,7 @@ menu {
     transform: scale(1.1);
 }
 
-.menuHeader button:active {
+.menuheader button:active {
     transform: scale(1);
 }
 
