@@ -33,7 +33,11 @@ let gridON = true;
 
 snakeSpeed = 150;
 
-let colorGame = "#e7e7e7";
+let colorGame = {
+    color1: "#7a7a7a",
+    color2: "#a8a8a8",
+    color3: "#7a7a7a",
+};
 
 let colorGrid = "#0000002d";
 
@@ -46,12 +50,22 @@ let colorFood = "purple";
 
 const gameStyle = () => {
     //Define a cor de fundo do canvas
-    ctx.fillStyle = colorGame;
+    const gradient = ctx.createLinearGradient(0, 0, canvasSize.x, canvasSize.y);
+    gradient.addColorStop(0, colorGame.color1); 
+    gradient.addColorStop(0.5, colorGame.color2); 
+    gradient.addColorStop(1, colorGame.color3); 
+
+    // Define o gradiente como estilo de preenchimento
+    ctx.fillStyle = gradient;
+
+    // Desenha um retângulo preenchido com o gradiente
     ctx.fillRect(0, 0, canvasSize.x, canvasSize.y);
 
+    //Tamanho das linhas e cor do grid
     ctx.lineWidth = 1;
     ctx.strokeStyle = colorGrid;
 
+    //Desenha o Grif (caso gridON esteja ativado)
     if (gridON) {
         for (let i = size; i < canvasSize.x; i += size) {
             //Desenha linhas na vertical
