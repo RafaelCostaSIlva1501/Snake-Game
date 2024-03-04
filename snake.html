@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Snake Game</title>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"/>
+
+        <link rel="stylesheet" href="style/style.css"/>
+    </head>
+    <body>
+        <!--Menu de configurações-->
+        <menu id="settings">
+
+            <!--Cabeçalho do menu-->
+            <section class="menuHeader">
+
+                <!--Título do menu-->
+                <h2>Configurações</h2>
+
+                <!--Botão para fechar o menu-->
+                <button id="closeSettings">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </section>
+
+            <!--Conteúdo do menu-->
+            <section class="menuOptions">
+
+                <!--Configurar velocidade da cobra-->
+                <div>
+                    <h3>Velocidade</h3>
+                    <div>
+
+                        <!--Velocidade miníma-->
+                        <button type="button" id="minSpeed" class="speed">
+                            Min
+                        </button>
+
+                        <!--Velocidade média (padrão)-->
+                        <button type="button" id="defaultSpeed" class="speed">
+                            Padrão
+                        </button>
+
+                        <!--Velocidade máxima-->
+                        <button type="button" id="maxSpeed" class="speed">
+                            Max
+                        </button>
+                    </div>
+                </div>
+
+                <!--Configurar linhas de grade-->
+                <div>
+                    <h3>Linhas de grade</h3>
+                    <input type="checkbox" id="gridOnOff" checked class="grid"/>
+                </div>
+
+                <div>
+                    <h3>Cor da cobra</h3>
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #ff0000"></div>
+                        <div style="background-color: #d82b2b"></div>
+                    </button>
+
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #6c2b86"></div>
+                        <div style="background-color: #9c39c4"></div>
+                    </button>
+
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #ffff00"></div>
+                        <div style="background-color: #eeee5a"></div>
+                    </button>
+
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #006eff"></div>
+                        <div style="background-color: #4090f8"></div>
+                    </button>
+
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #ff4500"></div>
+                        <div style="background-color: #f8642e"></div>
+                    </button>
+                </div>
+
+                <div>
+                    <h3>Cor da comida</h3>
+                    <button type="button" class="btnFoodColor"></button>
+
+                    <button type="button" class="btnFoodColor"></button>
+
+                    <button type="button" class="btnFoodColor"></button>
+
+                    <button type="button" class="btnFoodColor"></button>
+
+                    <button type="button" class="btnFoodColor"></button>
+                </div>
+            </section>
+        </menu>
+        <section>
+            <header>
+                <p>Score: <span id="score">0</span></p>
+                <div>
+                    <button>
+                        <span class="material-symbols-outlined">pause</span>
+                    </button>
+                    <button id="openSettings">
+                        <span class="material-symbols-outlined">settings</span>
+                    </button>
+                </div>
+            </header>
+            <div class="canvas-border">
+                <canvas width="450px" height="350px" id="canvas"></canvas>
+            </div>
+        </section>
+
+        <section>
+            <div class="btn-direction">
+                <div>
+                    <button id="btnUp">
+                        <span class="material-symbols-outlined"
+                            >arrow_drop_up</span
+                        >
+                    </button>
+                </div>
+
+                <div>
+                    <button id="btnLeft">
+                        <span class="material-symbols-outlined"
+                            >arrow_left</span
+                        >
+                    </button>
+                    <button type="button" style="border: none"></button>
+                    <button id="btnRight">
+                        <span class="material-symbols-outlined"
+                            >arrow_right</span
+                        >
+                    </button>
+                </div>
+
+                <div>
+                    <button id="btnDown">
+                        <span class="material-symbols-outlined"
+                            >arrow_drop_down</span
+                        >
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <script src="script/script.js"></script>
+        <script src="script/settings.js"></script>
+    </body>
+</html>
