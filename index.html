@@ -81,19 +81,27 @@
                         <div style="background-color: #ff4500"></div>
                         <div style="background-color: #f8642e"></div>
                     </button>
+
+                    <button type="button" class="btnSnakeColor">
+                        <div style="background-color: #1b9c0f"></div>
+                        <div style="background-color: #4dc942"></div>
+                    </button>
                 </div>
 
                 <div>
                     <h3>Cor da comida</h3>
-                    <button type="button" class="btnFoodColor"></button>
+                    <button type="button" class="btnFoodColor" style="background-color: #9c0000;">.</button>
 
-                    <button type="button" class="btnFoodColor"></button>
+                    <button type="button" class="btnFoodColor"
+                    style="background-color: #71009e;"></button>
 
-                    <button type="button" class="btnFoodColor"></button>
+                    <button type="button" class="btnFoodColor" style="background-color: #afaf00;"></button>
 
-                    <button type="button" class="btnFoodColor"></button>
+                    <button type="button" class="btnFoodColor" style="background-color: #00459e;"></button>
 
-                    <button type="button" class="btnFoodColor"></button>
+                    <button type="button" class="btnFoodColor" style="background-color: #b12f00;"></button>
+
+                    <button type="button" class="btnFoodColor" style="background-color: #096800;"></button>
                 </div>
             </section>
         </menu>
@@ -111,7 +119,19 @@
                 </div>
             </header>
             <div class="canvas-border">
+
+                <section id="StartGameDisplay" class="displayGame" style="display: flex;">
+                    <h2>Snake Game</h2>
+                    <button onclick="playGame()">Jogar</button>
+                </section>
+
                 <canvas width="380px" height="350px" id="canvas"></canvas>
+
+                <section id="GameOverDisplay" class="displayGame" style="display: none;">
+                    <h2>Game Over</h2>
+                    <button onclick="playGame()">Jogar Novamente</button>
+                </section>
+
             </div>
         </section>
 

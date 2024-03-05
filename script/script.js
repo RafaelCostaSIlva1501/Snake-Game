@@ -34,26 +34,26 @@ let gridON = true;
 snakeSpeed = 150;
 
 let colorGame = {
-    color1: "#7a7a7a",
-    color2: "#a8a8a8",
-    color3: "#7a7a7a",
+    color1: "black",
+    color2: "#111111",
+    color3: "black",
 };
 
 let colorGrid = "#0000002d";
 
 let colorSnake = {
-    colorBody: "#00000081",
-    colorHead: "#00000081",
+    colorBody: "#ffffffd3",
+    colorHead: "white",
 };
 
-let colorFood = "purple";
+let colorFood = "white";
 
 const gameStyle = () => {
     //Define a cor de fundo do canvas
     const gradient = ctx.createLinearGradient(0, 0, canvasSize.x, canvasSize.y);
-    gradient.addColorStop(0, colorGame.color1); 
-    gradient.addColorStop(0.5, colorGame.color2); 
-    gradient.addColorStop(1, colorGame.color3); 
+    gradient.addColorStop(0, colorGame.color1);
+    gradient.addColorStop(0.5, colorGame.color2);
+    gradient.addColorStop(1, colorGame.color3);
 
     // Define o gradiente como estilo de preenchimento
     ctx.fillStyle = gradient;
@@ -84,20 +84,24 @@ const gameStyle = () => {
 };
 
 const gameSettings = () => {
+    //Botão para ativar e desativar o grid
     const gridOnOff = document.getElementById("gridOnOff");
 
+    //Verifica se está ligado ou desligado
     if (gridOnOff.checked) {
         gridON = true;
     } else {
         gridON = false;
     }
 
+    //Muda a velocidade da cobra para o minimo
     document.getElementById("minSpeed").addEventListener("click", function () {
         clearInterval(gameInterval);
         snakeSpeed = 210;
         playGame();
     });
 
+    //Muda a velocidade da cobra para padrão
     document
         .getElementById("defaultSpeed")
         .addEventListener("click", function () {
@@ -106,6 +110,7 @@ const gameSettings = () => {
             playGame();
         });
 
+    //Muda a velocidade da cobra para o máximo
     document.getElementById("maxSpeed").addEventListener("click", function () {
         clearInterval(gameInterval);
         snakeSpeed = 90;
@@ -116,7 +121,6 @@ const gameSettings = () => {
 
     for (let i = 0; i < btnSnakeColor.length; i++) {
         btnSnakeColor[i].addEventListener("click", function () {
-            // Verifica se o botão clicado é o primeiro botão
             if (this === btnSnakeColor[0]) {
                 colorSnake.colorBody = "#d82b2b";
                 colorSnake.colorHead = "#ff0000";
@@ -132,6 +136,29 @@ const gameSettings = () => {
             } else if (this === btnSnakeColor[4]) {
                 colorSnake.colorBody = "#f8642e";
                 colorSnake.colorHead = "#ff4500";
+            } else if (this === btnSnakeColor[5]) {
+                colorSnake.colorBody = "#4dc942";
+                colorSnake.colorHead = "#1b9c0f";
+            }
+        });
+    }
+
+    const btnFoodColor = document.getElementsByClassName("btnFoodColor");
+
+    for (let i = 0; i < btnFoodColor.length; i++) {
+        btnFoodColor[i].addEventListener("click", function () {
+            if (this === btnFoodColor[0]) {
+                colorFood = "#9c0000";
+            } else if (this === btnFoodColor[1]) {
+                colorFood = "#71009e";
+            } else if (this === btnFoodColor[2]) {
+                colorFood = "#afaf00";
+            } else if (this === btnFoodColor[3]) {
+                colorFood = "#00459e";
+            } else if (this === btnFoodColor[4]) {
+                colorFood = "#b12f00";
+            } else if (this === btnFoodColor[5]) {
+                colorFood = "#096800";
             }
         });
     }
@@ -150,9 +177,14 @@ const drawSnake = function () {
     snake.forEach(function (position, index) {
         if (index == snake.length - 1) {
             ctx.fillStyle = colorSnake.colorHead;
+            ctx.shadowColor = colorSnake.colorHead;
+            ctx.shadowBlur = 10;
         }
 
         ctx.fillRect(position.x, position.y, size, size);
+
+        ctx.shadowColor = colorSnake.colorBody;
+        ctx.shadowBlur = 10;
     });
 };
 
@@ -225,18 +257,15 @@ const numPositionY = function () {
 const food = {
     x: numPositionX(),
     y: numPositionY(),
-    color: colorFood,
 };
 
 //Desenha a comida dentro do canvas
 const drawFood = function () {
-    ctx.shadowColor = food.color;
-    ctx.shadowBlur = 10;
-    ctx.fillStyle = food.color;
+    ctx.shadowColor = colorFood;
+    ctx.shadowBlur = 20;
+    ctx.fillStyle = colorFood;
 
     ctx.fillRect(food.x, food.y, size, size);
-
-    ctx.shadowBlur = 0;
 };
 
 const collision = () => {
@@ -290,8 +319,9 @@ const checkEat = () => {
     food.y = y;
 };
 
+const score = document.getElementById("score");
+
 const scoreUpdate = () => {
-    const score = document.getElementById("score");
     let scoreAtual = parseInt(score.innerHTML, 10);
 
     scoreAtual += 1;
@@ -303,6 +333,8 @@ const gameOver = () => {
     direction = undefined;
     canvas.style.filter = "blur(2px)";
     moveON = false;
+
+    document.getElementById("GameOverDisplay").style.display = "flex";
 };
 
 const draw = () => {
@@ -310,8 +342,23 @@ const draw = () => {
     drawFood();
 };
 
+const resetSnake = () => {
+    snake = [
+        { x: 10, y: 10 },
+        { x: 20, y: 10 },
+    ];
+};
+
 let gameInterval;
 const playGame = () => {
+    document.getElementById("StartGameDisplay").style.display = "none";
+    document.getElementById("GameOverDisplay").style.display = "none";
+    canvas.style.filter = "none";
+    score.innerHTML = 0
+    resetSnake();
+
+    moveON = true;
+
     gameInterval = setInterval(function () {
         ctx.clearRect(0, 0, canvasSize.x, canvasSize.y);
 
@@ -324,5 +371,4 @@ const playGame = () => {
     }, snakeSpeed);
 };
 
-playGame();
 gameSettings();
