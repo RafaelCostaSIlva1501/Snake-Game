@@ -353,6 +353,7 @@ let gameInterval;
 const playGame = () => {
     document.getElementById("StartGameDisplay").style.display = "none";
     document.getElementById("GameOverDisplay").style.display = "none";
+    clearInterval(gameInterval);
     canvas.style.filter = "none";
     score.innerHTML = 0
     resetSnake();
