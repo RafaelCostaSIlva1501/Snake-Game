@@ -266,6 +266,9 @@ const drawFood = function () {
     ctx.fillStyle = colorFood;
 
     ctx.fillRect(food.x, food.y, size, size);
+
+    ctx.shadowColor = colorSnake.colorBody;
+    ctx.shadowBlur = 10;
 };
 
 const collision = () => {
