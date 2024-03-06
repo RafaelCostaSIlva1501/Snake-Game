@@ -340,6 +340,11 @@ const gameOver = () => {
     document.getElementById("GameOverDisplay").style.display = "flex";
 };
 
+document.getElementById("btnPlayAgain").addEventListener("click", function () {
+    resetGame();
+    playGame();
+});
+
 const draw = () => {
     drawSnake();
     drawFood();
@@ -352,15 +357,29 @@ const resetSnake = () => {
     ];
 };
 
+const resetGame = () => {
+    document.getElementById("StartGameDisplay").style.display = "none";
+    document.getElementById("GameOverDisplay").style.display = "none";
+
+    clearInterval(gameInterval);
+
+    canvas.style.filter = "none";
+
+    score.innerHTML = 0;
+
+    moveON = true;
+
+    snake = [
+        { x: 10, y: 10 },
+        { x: 20, y: 10 },
+    ];
+};
+
 let gameInterval;
+
 const playGame = () => {
     document.getElementById("StartGameDisplay").style.display = "none";
     document.getElementById("GameOverDisplay").style.display = "none";
-    clearInterval(gameInterval);
-    canvas.style.filter = "none";
-    score.innerHTML = 0
-    resetSnake();
-
     moveON = true;
 
     gameInterval = setInterval(function () {
@@ -376,3 +395,7 @@ const playGame = () => {
 };
 
 gameSettings();
+
+document.getElementById("pauseGame").addEventListener("click", function () {
+    direction = "";
+});
