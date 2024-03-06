@@ -120,7 +120,7 @@ menu {
     border: 1px solid var(--corBaseClara);
     width: 95vw;
     max-width: 500px;
-    height: 95vh;
+    max-height: 90vh;
     padding: 10px;
     z-index: 2;
     color: #ffffffd3;
