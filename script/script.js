@@ -19,11 +19,12 @@ const settings = document.getElementById("settings");
 //Botão para abrir o menu de configurações
 document.getElementById("openSettings").addEventListener("click", function () {
     settings.style.display = "flex";
-    direction = "";
+    moveON = false
 });
 
 //Botão para fechar o menu de configurações
 document.getElementById("closeSettings").addEventListener("click", function () {
+    moveON = true
     settings.style.display = "none";
     gameSettings();
 });
@@ -397,6 +398,16 @@ const playGame = () => {
 
 gameSettings();
 
-document.getElementById("pauseGame").addEventListener("click", function () {
-    direction = "";
+let pauseGame = document.getElementById("pauseGame");
+pauseGame.addEventListener("click", function () {
+    moveON = false;
+    unpauseGame.style.display = "inline-block"
+    pauseGame.style.display = "none"
+});
+
+let unpauseGame = document.getElementById("unpauseGame");
+unpauseGame.addEventListener("click", function () {
+    moveON = true;
+    unpauseGame.style.display = "none"
+    pauseGame.style.display = "inline-block"
 });
