@@ -19,18 +19,20 @@ const settings = document.getElementById("settings");
 //Botão para abrir o menu de configurações
 document.getElementById("openSettings").addEventListener("click", function () {
     settings.style.display = "flex";
-    moveON = false
+    moveON = false;
 });
 
 //Botão para fechar o menu de configurações
 document.getElementById("closeSettings").addEventListener("click", function () {
-    moveON = true
+    moveON = true;
     settings.style.display = "none";
     gameSettings();
 });
 
 //Configurações de estilo
 let gridON = true;
+
+let selfCollisionON = true;
 
 snakeSpeed = 150;
 
@@ -85,16 +87,6 @@ const gameStyle = () => {
 };
 
 const gameSettings = () => {
-    //Botão para ativar e desativar o grid
-    const gridOnOff = document.getElementById("gridOnOff");
-
-    //Verifica se está ligado ou desligado
-    if (gridOnOff.checked) {
-        gridON = true;
-    } else {
-        gridON = false;
-    }
-
     //Muda a velocidade da cobra para o minimo
     document.getElementById("minSpeed").addEventListener("click", function () {
         clearInterval(gameInterval);
@@ -117,6 +109,24 @@ const gameSettings = () => {
         snakeSpeed = 90;
         playGame();
     });
+
+    //Botão para ativar e desativar o grid
+    const gridOnOff = document.getElementById("gridOnOff");
+
+    //Verifica se está ligado ou desligado
+    if (gridOnOff.checked) {
+        gridON = true;
+    } else {
+        gridON = false;
+    }
+
+    const selfCollisionOnOff = document.getElementById("selfCollisionOnOff");
+
+    if (selfCollisionOnOff.checked) {
+        selfCollisionON = true
+    } else {
+        selfCollisionON = false
+    }
 
     const btnSnakeColor = document.getElementsByClassName("btnSnakeColor");
 
@@ -299,11 +309,15 @@ const collision = () => {
     //Colisão com a comida
     const foodCollision = headSnake.x == food.x && headSnake.y == food.y;
 
-    if (wallCollision || selfCollision) {
+    if (wallCollision) {
+        gameOver();
+    } else if (selfCollision && selfCollisionON) {
         gameOver();
     } else if (foodCollision) {
         checkEat();
         scoreUpdate();
+    } else if (selfCollision && selfCollisionON === false) {
+        console.log("Foi!");
     }
 };
 
@@ -377,7 +391,6 @@ let gameInterval;
 const playGame = () => {
     document.getElementById("StartGameDisplay").style.display = "none";
     document.getElementById("GameOverDisplay").style.display = "none";
-    moveON = true;
 
     const food = {
         x: numPositionX(),
@@ -401,13 +414,13 @@ gameSettings();
 let pauseGame = document.getElementById("pauseGame");
 pauseGame.addEventListener("click", function () {
     moveON = false;
-    unpauseGame.style.display = "inline-block"
-    pauseGame.style.display = "none"
+    unpauseGame.style.display = "inline-block";
+    pauseGame.style.display = "none";
 });
 
 let unpauseGame = document.getElementById("unpauseGame");
 unpauseGame.addEventListener("click", function () {
     moveON = true;
-    unpauseGame.style.display = "none"
-    pauseGame.style.display = "inline-block"
+    unpauseGame.style.display = "none";
+    pauseGame.style.display = "inline-block";
 });

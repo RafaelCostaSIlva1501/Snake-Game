@@ -178,8 +178,8 @@ menu div h3 {
     color: var(--corTexto);
 }
 
-menu .grid {
-    width: 50px;
+menu input[type="checkbox"] {
+    margin-right: 20px;
 }
 
 menu .speed {
