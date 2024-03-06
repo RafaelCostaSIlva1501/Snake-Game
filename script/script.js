@@ -350,13 +350,6 @@ const draw = () => {
     drawFood();
 };
 
-const resetSnake = () => {
-    snake = [
-        { x: 10, y: 10 },
-        { x: 20, y: 10 },
-    ];
-};
-
 const resetGame = () => {
     document.getElementById("StartGameDisplay").style.display = "none";
     document.getElementById("GameOverDisplay").style.display = "none";
@@ -373,6 +366,9 @@ const resetGame = () => {
         { x: 10, y: 10 },
         { x: 20, y: 10 },
     ];
+
+    food.x = numPositionX();
+    food.y = numPositionY();
 };
 
 let gameInterval;
@@ -381,6 +377,11 @@ const playGame = () => {
     document.getElementById("StartGameDisplay").style.display = "none";
     document.getElementById("GameOverDisplay").style.display = "none";
     moveON = true;
+
+    const food = {
+        x: numPositionX(),
+        y: numPositionY(),
+    };
 
     gameInterval = setInterval(function () {
         ctx.clearRect(0, 0, canvasSize.x, canvasSize.y);
