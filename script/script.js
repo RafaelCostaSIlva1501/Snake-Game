@@ -123,9 +123,9 @@ const gameSettings = () => {
     const selfCollisionOnOff = document.getElementById("selfCollisionOnOff");
 
     if (selfCollisionOnOff.checked) {
-        selfCollisionON = true
+        selfCollisionON = true;
     } else {
-        selfCollisionON = false
+        selfCollisionON = false;
     }
 
     const btnSnakeColor = document.getElementsByClassName("btnSnakeColor");
@@ -170,6 +170,27 @@ const gameSettings = () => {
                 colorFood = "#b12f00";
             } else if (this === btnFoodColor[5]) {
                 colorFood = "#096800";
+            }
+        });
+    }
+
+    const btnControls = document.getElementsByClassName("btnControls");
+
+    for (let i = 0; i < btnControls.length; i++) {
+        btnControls[i].addEventListener("click", function () {
+
+            const Dpad = document.getElementById("Dpad").style;
+
+            if (this === btnControls[0]) {
+                Dpad.display = "grid"
+                Dpad.marginTop = "5px"
+                Dpad.gap = "5px"
+            } else if (this === btnControls[1]) {
+                Dpad.display = "flex"
+                Dpad.marginTop = "15px"
+                Dpad.gap = "10px"
+            } else if (this === btnControls[2]) {
+                Dpad.display = "none"
             }
         });
     }

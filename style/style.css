@@ -73,16 +73,14 @@ canvas {
 }
 
 .btn-direction {
-    display: flex;
-    flex-direction: column;
-    margin: 5px auto;
-}
-
-.btn-direction div {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, fr);
+    gap: 5px;
     justify-content: center;
-    margin: 1px 0px;
+    align-content: center;
+    margin-top: 5px;
+
 }
 
 .btn-direction button {
@@ -95,12 +93,36 @@ canvas {
     border-radius: 10px;
     height: 65px;
     width: 65px;
-    margin: 0px 1px;
     color: var(--corTexto);
 }
 
+.up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+.down {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.center {
+    grid-column: 2;
+    grid-row: 2;
+}
+
 .btn-direction button:active {
-    background-color: #ffffff56;
+    background-color: var(--corTexto);
     color: var(--corBaseEscura);
 }
 
@@ -126,7 +148,7 @@ menu {
     color: #ffffffd3;
 }
 
-.menuHeader {
+.menu-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -137,11 +159,11 @@ menu {
     margin-bottom: 10px;
 }
 
-.menuHeader h2 {
+.menu-header h2 {
     color: var(--corTexto);
 }
 
-.menuHeader button {
+.menu-header button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -150,30 +172,30 @@ menu {
     cursor: pointer;
 }
 
-.menuHeader button:hover {
+.menu-header button:hover {
     transform: scale(1.1);
 }
 
-.menuheader button:active {
+.mmenu-header button:active {
     transform: scale(1);
 }
 
-menu .menuOptions {
+menu .menu-options {
     display: flex;
     flex-direction: column;
     gap: 50px;
     height: 100%;
     width: 100%;
+    overflow-y: auto;
 }
 
-menu .menuOptions div {
+menu .menu-options div {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-menu div h3 {
+menu h3 {
     font-size: 1.4rem;
     color: var(--corTexto);
 }
@@ -182,14 +204,14 @@ menu input[type="checkbox"] {
     margin-right: 20px;
 }
 
-menu .speed {
+menu .setting-speed button {
     background: none;
     color: var(--corTexto);
     margin: 0px 10px;
     padding: 2px 10px;
 }
 
-.btnSnakeColor {
+.setting-color-snake button {
     display: flex;
     flex-direction: row;
     width: 20px;
@@ -197,15 +219,26 @@ menu .speed {
     background: none;
 }
 
-.btnSnakeColor div {
+.setting-color-snake div {
     width: 50%;
     height: 100%;
-    color: #00000081;
 }
 
-.btnFoodColor {
+.setting-color-food button {
     width: 20px;
     height: 20px;
+}
+
+.setting-controls button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: none;
+    border-radius: 5px;
+}
+
+.setting-controls img {
+    width: 80px;
 }
 
 .displayGame {

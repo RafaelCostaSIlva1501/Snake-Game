@@ -13,7 +13,7 @@
         <menu id="settings">
 
             <!--Cabeçalho do menu-->
-            <section class="menuHeader">
+            <section class="menu-header">
 
                 <!--Título do menu-->
                 <h2>Configurações</h2>
@@ -25,92 +25,108 @@
             </section>
 
             <!--Conteúdo do menu-->
-            <section class="menuOptions">
+            <section class="menu-options">
 
                 <!--Configurar velocidade da cobra-->
-                <div>
+                <div class="setting-speed">
                     <h3>Velocidade</h3>
                     <div>
 
                         <!--Velocidade miníma-->
-                        <button type="button" id="minSpeed" class="speed">
+                        <button id="minSpeed">
                             Min
                         </button>
 
                         <!--Velocidade média (padrão)-->
-                        <button type="button" id="defaultSpeed" class="speed">
+                        <button id="defaultSpeed">
                             Padrão
                         </button>
 
                         <!--Velocidade máxima-->
-                        <button type="button" id="maxSpeed" class="speed">
+                        <button id="maxSpeed">
                             Max
                         </button>
                     </div>
                 </div>
 
                 <!--Configurar linhas de grade-->
-                <div>
+                <div class="setting-grid">
                     <h3>Linhas de grade</h3>
                     <input type="checkbox" id="gridOnOff" checked/>
                 </div>
 
-                <div>
+                <div class="setting-collision">
                     <h3>Colisão com o corpo</h3>
                     <input type="checkbox" id="selfCollisionOnOff" checked>
                 </div>
 
-                <div>
+                <div class="setting-color-snake">
                     <h3>Cor da cobra</h3>
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #ff0000"></div>
                         <div style="background-color: #d82b2b"></div>
                     </button>
 
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #6c2b86"></div>
                         <div style="background-color: #9c39c4"></div>
                     </button>
 
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #ffff00"></div>
                         <div style="background-color: #eeee5a"></div>
                     </button>
 
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #006eff"></div>
                         <div style="background-color: #4090f8"></div>
                     </button>
 
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #ff4500"></div>
                         <div style="background-color: #f8642e"></div>
                     </button>
 
-                    <button type="button" class="btnSnakeColor">
+                    <button class="btnSnakeColor">
                         <div style="background-color: #1b9c0f"></div>
                         <div style="background-color: #4dc942"></div>
                     </button>
                 </div>
 
-                <div>
+                <div class="setting-color-food">
                     <h3>Cor da comida</h3>
-                    <button type="button" class="btnFoodColor" style="background-color: #9c0000;">.</button>
+                    <button class="btnFoodColor" style="background-color: #9c0000;">.</button>
 
-                    <button type="button" class="btnFoodColor"
+                    <button class="btnFoodColor"
                     style="background-color: #71009e;"></button>
 
-                    <button type="button" class="btnFoodColor" style="background-color: #afaf00;"></button>
+                    <button class="btnFoodColor" style="background-color: #afaf00;"></button>
 
-                    <button type="button" class="btnFoodColor" style="background-color: #00459e;"></button>
+                    <button class="btnFoodColor" style="background-color: #00459e;"></button>
 
-                    <button type="button" class="btnFoodColor" style="background-color: #b12f00;"></button>
+                    <button class="btnFoodColor" style="background-color: #b12f00;"></button>
 
-                    <button type="button" class="btnFoodColor" style="background-color: #096800;"></button>
+                    <button class="btnFoodColor" style="background-color: #096800;"></button>
+                </div>
+
+                <div class="setting-controls">
+                    <h3>Controles</h3>
+                    <button class="btnControls">
+                        <img src="img/D-Pad tradicional.jpg">
+                    </button>
+
+                    <button class="btnControls">
+                        <img src="img/D-Pad Em Linha.jpg">
+                    </button>
+
+                    <button class="btnControls">
+                        <img src="img/Sem D-Pad.jpg">
+                    </button>
                 </div>
             </section>
         </menu>
 
+        <!--Tela do game-->
         <section class="game-container">
             <header>
                 <p>Score: <span id="score">0</span></p>
@@ -145,39 +161,29 @@
             </div>
         </section>
 
-        <section>
-            <div class="btn-direction">
-                <div>
-                    <button id="btnUp">
-                        <span class="material-symbols-outlined"
-                            >arrow_drop_up</span
-                        >
-                    </button>
-                </div>
+        <!--Botões de controle-->
+        <section class="btn-direction" id="Dpad">
+            <button class="up" id="btnUp">
+                <span class="material-symbols-outlined">arrow_drop_up</span>
+            </button>
 
-                <div>
-                    <button id="btnLeft">
-                        <span class="material-symbols-outlined"
-                            >arrow_left</span
-                        >
-                    </button>
-                    <button type="button" style="border: none"></button>
-                    <button id="btnRight">
-                        <span class="material-symbols-outlined"
-                            >arrow_right</span
-                        >
-                    </button>
-                </div>
+            <button class="down" id="btnDown">
+                <span class="material-symbols-outlined">arrow_drop_down</span>
+            </button>
 
-                <div>
-                    <button id="btnDown">
-                        <span class="material-symbols-outlined"
-                            >arrow_drop_down</span
-                        >
-                    </button>
-                </div>
-            </div>
+            <button class="center">
+            </button>
+
+            <button class="left" id="btnLeft">
+                <span class="material-symbols-outlined">arrow_left</span>
+            </button>
+
+            <button class="right" id="btnRight">
+                <span class="material-symbols-outlined">arrow_right</span>
+            </button>
+            
         </section>
+        
 
         <script src="script/script.js"></script>
         <script src="script/settings.js"></script>
