@@ -80,7 +80,6 @@ canvas {
     justify-content: center;
     align-content: center;
     margin-top: 5px;
-
 }
 
 .btn-direction button {
@@ -133,7 +132,6 @@ canvas {
 menu {
     display: none;
     flex-direction: column;
-    align-items: baseline;
     position: absolute;
     left: 50%;
     top: 50%;
@@ -142,7 +140,7 @@ menu {
     border: 1px solid var(--corBaseClara);
     width: 95vw;
     max-width: 500px;
-    max-height: 90vh;
+    height: 95vh;
     padding: 10px;
     z-index: 2;
     color: #ffffffd3;
@@ -186,6 +184,7 @@ menu .menu-options {
     gap: 50px;
     height: 100%;
     width: 100%;
+    overflow: hidden;
     overflow-y: auto;
 }
 
@@ -204,11 +203,22 @@ menu input[type="checkbox"] {
     margin-right: 20px;
 }
 
-menu .setting-speed button {
+.setting-speed button {
     background: none;
+    border: 1px ridge var(--corTexto);
+    border-radius: 5px;
     color: var(--corTexto);
     margin: 0px 10px;
     padding: 2px 10px;
+    cursor: pointer;
+}
+
+.setting-speed button:hover {
+    transform: scale(1.1);
+}
+
+.setting-speed button:active {
+    transform: scale(1);
 }
 
 .setting-color-snake button {
@@ -217,6 +227,16 @@ menu .setting-speed button {
     width: 20px;
     height: 20px;
     background: none;
+    border: 2px ridge black;
+    cursor: pointer;
+}
+
+.setting-color-snake button:hover {
+    transform: scale(1.1);
+}
+
+.setting-color-snake button:active {
+    transform: scale(1);
 }
 
 .setting-color-snake div {
@@ -227,6 +247,16 @@ menu .setting-speed button {
 .setting-color-food button {
     width: 20px;
     height: 20px;
+    border: 2px ridge black;
+    cursor: pointer;
+}
+
+.setting-color-food button:hover {
+    transform: scale(1.1);
+}
+
+.setting-color-food button:active {
+    transform: scale(1);
 }
 
 .setting-controls button {
@@ -235,10 +265,19 @@ menu .setting-speed button {
     align-items: center;
     background: none;
     border-radius: 5px;
+    cursor: pointer;
+}
+
+.setting-controls button:hover {
+    transform: scale(1.1);
+}
+
+.setting-controls button:active {
+    transform: scale(1);
 }
 
 .setting-controls img {
-    width: 80px;
+    width: 70px;
 }
 
 .displayGame {
