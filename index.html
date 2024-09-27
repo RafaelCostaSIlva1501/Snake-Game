@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Snake Game</title>
+
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
+    <link rel="stylesheet" href="style/style.css" />
+
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+  </head>
+  <body>
+    <header class="home-header">
+      <a href="../../index.html">
+        <span class="material-symbols-outlined">arrow_back </span>
+      </a>
+      <h1>Snake Game</h1>
+    </header>
+
+    <main>
+      <div class="game">
+        <section class="start-screen">
+          <div>
+            <h2>Snake Game</h2>
+          </div>
+
+          <div>
+            <button id="btnPlayGame">Jogar</button>
+            <button class="open-settings">Opções</button>
+          </div>
+
+          <div></div>
+        </section>
+
+        <section class="game-screen">
+          <header>
+            <h2>Score: <span id="score">0</span></h2>
+
+            <div>
+              <button class="play-again">
+                <span class="material-symbols-outlined">home</span>
+              </button>
+
+              <button id="btnPauseGame">
+                <span class="material-symbols-outlined change-pause-icon"
+                  >pause</span
+                >
+              </button>
+            </div>
+          </header>
+
+          <canvas id="canvas"></canvas>
+        </section>
+
+        <section class="gameover-screen">
+          <button class="play-again">Jogar Novamente</button>
+        </section>
+
+        <section class="settings-screen">
+          <header>
+            <h2>Configurações</h2>
+
+            <button class="close-settings">
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </header>
+
+          <section>
+            <div class="color-option">
+              <h3>Cor de fundo:</h3>
+
+              <button
+                class="button-background-color thermal"
+                data-color1="#ff0000"
+                data-color2="#ffa500"
+                data-color3="#ffff00"
+              ></button>
+
+              <button
+                class="button-background-color cavern"
+                data-color1="#000000"
+                data-color2="#202020"
+                data-color3="#000000"
+              ></button>
+
+              <button
+                class="button-background-color ice"
+                data-color1="#6048cf"
+                data-color2="#4f76be"
+                data-color3="#4f98c9"
+              ></button>
+            </div>
+
+            <div class="toggle-option">
+              <h3>Linhas de grade:</h3>
+
+              <button class="button-grid">
+                <span class="material-symbols-outlined grid-icon"
+                  >toggle_on</span
+                >
+              </button>
+            </div>
+
+            <div class="speed-option">
+              <h3>Velocidade:</h3>
+
+              <button class="button-speed" data-speed="210">MIN</button>
+              <button
+                class="button-speed"
+                data-speed="150"
+                style="background-color: #1d803a"
+              >
+                PADRÃO
+              </button>
+              <button class="button-speed" data-speed="90">MAX</button>
+            </div>
+
+            <div class="toggle-option">
+              <h3>Colisão com corpo:</h3>
+
+              <button class="button-grid">
+                <span class="material-symbols-outlined grid-icon"
+                  >toggle_on</span
+                >
+              </button>
+            </div>
+
+            <div class="color-option">
+              <h3>Cor da cobrinha:</h3>
+
+              <button
+                style="background-color: #8feb1f"
+                class="button-snake-color"
+                data-color1="#77c21c"
+                data-color2="#83d420"
+              ></button>
+
+              <button
+                style="background-color: #631ce7"
+                class="button-snake-color"
+                data-color1="#631ce7"
+                data-color2="#6c2ce4"
+              ></button>
+
+              <button
+                style="background-color: #7a0a0a"
+                class="button-snake-color"
+                data-color1="#7a0a0a"
+                data-color2="#991818"
+              ></button>
+            </div>
+
+            <div class="color-option">
+              <h3>Cor da comida:</h3>
+
+              <button></button>
+            </div>
+          </section>
+        </section>
+      </div>
+
+      <!--Botões de controle-->
+      <div class="btn-direction" id="Dpad">
+        <button class="up" id="btnUp">
+          <span class="material-symbols-outlined">arrow_drop_up</span>
+        </button>
+
+        <button class="down" id="btnDown">
+          <span class="material-symbols-outlined">arrow_drop_down</span>
+        </button>
+
+        <button class="center"></button>
+
+        <button class="left" id="btnLeft">
+          <span class="material-symbols-outlined">arrow_left</span>
+        </button>
+
+        <button class="right" id="btnRight">
+          <span class="material-symbols-outlined">arrow_right</span>
+        </button>
+      </div>
+    </main>
+    <script src="script/script.js"></script>
+  </body>
+</html>
