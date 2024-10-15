@@ -64,8 +64,8 @@ const horizontalScreen = (numX, numY) => {
 };
 
 const setHorizontalCanvas = (numX, numY) => {
-  let horizontalX = Math.round(numX / 10) * 10 - 200;
-  let horizontalY = Math.round(numY / 10) * 10 - 200;
+  let horizontalX = Math.round(numX / 10) * 10 - 300;
+  let horizontalY = Math.round(numY / 10) * 10 - 300;
 
   canvas.width = horizontalX;
   canvas.height = horizontalY;
@@ -81,7 +81,7 @@ const verticalScreen = (numX) => {
 
 const setVerticalCanvas = (numX) => {
   let horizontalX = Math.round(numX / 10) * 10;
-  let horizontalY = Math.round(numX / 10) * 10 - 100;
+  let horizontalY = horizontalX - 100;
 
   canvas.width = horizontalX;
   canvas.height = horizontalY;
