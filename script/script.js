@@ -303,7 +303,7 @@ const checkEat = () => {
   scoreUpdate();
 };
 
-let scoreAtual = parseInt(score.innerHTML, 10);
+let scoreAtual = 0
 
 //Atualiza o score
 const scoreUpdate = () => {
@@ -353,6 +353,8 @@ let gameInterval;
 
 //Dá início ao jogo
 const playGame = () => {
+  scoreAtual = 0
+
   if (window.innerHeight > window.innerWidth) {
     Dpad.style.display = "grid";
   }
