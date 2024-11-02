@@ -20,230 +20,274 @@ body {
 }
 
 .home-header {
-  display: flex; 
-  align-items: center; 
-  justify-content: space-between; 
-  background-color: #121212; 
-  padding: 15px 20px; 
-  color: #ecf0f1; 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #121212;
+  padding: 15px 20px;
+  color: #ecf0f1;
   font-family: "Arial", sans-serif;
 }
 
 .home-header a {
-  text-decoration: none; 
-  color: #ecf0f1; 
-  transition: color 0.3s; 
+  text-decoration: none;
+  color: #ecf0f1;
+  transition: color 0.3s;
 }
 
 .home-header a:hover {
-  color: #3498db;
+  color: #5b30c0;
 }
 
 .home-header h1 {
-  font-size: 24px; 
-  margin: 0; 
-  flex-grow: 1; 
-  text-align: center; 
+  font-size: 24px;
+  margin: 0;
+  flex-grow: 1;
+  text-align: center;
 }
 
 main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 10px;
   flex: 1;
-
-  padding: 5px;
-}
-
-.game {
-  border: 1px solid black;
-  display: flex;
-}
-
-.start-screen {
-  position: absolute;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  flex: 1;
-
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-
-  background: linear-gradient(45deg, var(--cor2), var(--cor3), var(--cor2));
-}
-
-.start-screen > div:nth-child(2) {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.start-screen button {
-  padding: 10px 20px;
-
-  background-color: var(--cor3);
-  border: none;
-  border-radius: 10px;
-  outline: none;
-
-  color: var(--cor6);
-  font-size: 1.5rem;
-
-  cursor: pointer;
-  box-shadow: 0px 5px 15px #00000033;
-}
-
-.start-screen button:hover {
-  transition: background-color 0.3s;
-  background-color: var(--cor2);
+  gap: 20px;
 }
 
 .game-screen {
-  position: absolute;
-
-  display: none;
+  display: flex;
   flex-direction: column;
+  align-items: center;
+
+  gap: 10px;
 
   width: 100%;
 }
 
 .game-screen header {
   display: flex;
-  justify-content: space-between;
 
-  padding: 5px;
+  width: 350px;
 
-  background-color: var(--cor6);
-  border: 1px solid var(--cor6);
-  border-bottom: none;
+  border-bottom: 1px solid #121212;
 }
 
-.game-screen header h2 {
-  color: var(--cor1);
-  font-size: 1rem;
-}
-
-.game-screen div {
+.start-screen {
   display: flex;
-  gap: 10px;
-}
-
-.game-screen header button {
-  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 30px;
 
-  background: none;
-  border: 1px solid var(--cor1);
+  width: 350px;
+  height: 350px;
+
+  border: 1px solid black;
   border-radius: 5px;
-
-  cursor: pointer;
 }
 
-.game-screen header span {
-  color: var(--cor1);
-  font-size: 1rem;
+.start-screen button {
+  width: 200px;
+  padding: 15px 30px;
+
+  background-color: #53d831;
+  border: none;
+  border-radius: 12px;
+
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px #66e84faf;
+  text-transform: uppercase;
+}
+
+.start-screen button:hover {
+  background-color: #368a20;
+  box-shadow: 0 6px 20px #66e84f;
+  transform: scale(1.1);
+}
+
+.start-screen button:active {
+  transform: scale(0.95);
 }
 
 canvas {
-  width: 450px;
-  height: 450px;
+  display: none;
 
-  border: 1px solid red;
+  width: 350px;
+  height: 350px;
+  border: 1px solid black;
 }
 
-.gameover-screen {
-  position: absolute;
-
+.end-screen {
   display: none;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
-  background-color: #000000af;
-  color: #ffffff85;
+  gap: 20px;
 
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
+
+  border: 1px solid black;
+  border-radius: 5px;
 }
 
-.gameover-screen button {
-  width: 150px;
-  padding: 10px;
+.end-screen button {
+  width: 200px;
+  padding: 15px 30px;
 
-  background-color: var(--cor3);
+  background-color: #53d831;
   border: none;
-  border-radius: 10px;
-  outline: none;
+  border-radius: 12px;
 
-  color: var(--cor6);
-  font-size: 1rem;
+  color: #ffffff;
+  font-family: "Arial", sans-serif;
+  font-size: 22px;
+  font-weight: bold;
 
   cursor: pointer;
-  box-shadow: 0px 5px 15px #00000033;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px #66e84faf;
+  text-transform: uppercase;
 }
 
-.gameover-screen button:hover {
-  transition: background-color 0.3s;
-  background-color: var(--cor2);
+.end-screen button:hover {
+  background-color: #368a20;
+  box-shadow: 0 6px 20px #66e84f;
+  transform: scale(1.1);
+}
+
+.end-screen button:active {
+  transform: scale(0.95);
 }
 
 .settings-screen {
-  position: absolute;
-
   display: none;
   flex-direction: column;
+  align-items: center;
 
-  width: 100%;
-  height: 100%;
+  width: 350px;
+  height: 350px;
 
-  background-color: var(--cor1);
+  border: 1px solid black;
+  border-radius: 5px;
 
-  overflow-y: auto;
+  font-size: 18px;
 }
 
 .settings-screen header {
   display: flex;
   justify-content: space-between;
-
-  padding: 5px;
-
-  background: linear-gradient(45deg, var(--cor2), var(--cor3));
-}
-
-.settings-screen header h2 {
-  font-size: 1rem;
-}
-
-.settings-screen header button {
-  display: flex;
-  justify-content: center;
   align-items: center;
 
+  padding: 10px;
+}
+
+.settings-screen section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+
+  width: 100%;
+  padding: 10px;
+}
+
+.close-settings {
+  display: flex;
   background: none;
   border: none;
 
   cursor: pointer;
 }
 
-.settings-screen header button span {
-  color: var(--cor6);
+.color-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.settings-screen section {
-  padding: 10px;
+.color-option button {
+  width: 25px;
+  height: 25px;
+
+  border: none;
+  border-radius: 50%;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
 
-.settings-screen section h3 {
-  font-weight: 300;
+.color-option button:hover {
+  transform: scale(1.1);
 }
 
-.btn-direction {
-  display: grid;
+.thermal {
+  background: linear-gradient(110deg, #ff0000, #ffa500, #ffff00);
+}
+
+.cavern {
+  background: linear-gradient(110deg, #000000, #202020, #000000);
+}
+
+.ice {
+  background: linear-gradient(110deg, #6048cf, #4f76be, #4f98c9);
+}
+
+.toggle-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.toggle-option button {
+  display: flex;
+
+  background: none;
+  border: none;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.toggle-button {
+  font-size: 30px;
+  color: #53d831;
+}
+
+.speed-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.speed-option button {
+  flex: 1;
+
+  padding: 5px;
+
+  background-color: #53d831;
+  border: none;
+  border-radius: 10px;
+
+  color: white;
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.speed-option button:hover {
+  transform: scale(1.1);
+}
+
+.dpad {
+  display: none;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, fr);
   gap: 5px;
@@ -251,7 +295,7 @@ canvas {
   width: min-content;
 }
 
-.btn-direction button {
+.dpad button {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -259,13 +303,19 @@ canvas {
   height: 50px;
   width: 50px;
 
-  background-color: var(--cor2);
+  background-color: #53d831;
+  box-shadow: 0 4px 15px #66e84faf;
   border: none;
   border-radius: 10px;
 
-  color: var(--cor6);
-
+  color: #ffffff;
   cursor: pointer;
+
+  transition: all 0.1s ease;
+}
+
+.dpad button:active {
+  background-color: #368a20;
 }
 
 .up {
@@ -293,79 +343,6 @@ canvas {
   grid-row: 2;
 }
 
-.btn-direction button:active {
-  transition: background-color 0.3s, color 0.3s;
-  background-color: var(--corTexto);
-  color: var(--cor04);
-}
-
-.btn-direction button span {
-  color: inherit;
-}
-
-.speed-option {
-  display: flex;
-  gap: 15px;
-}
-
-.speed-option button {
-  flex: 1;
-
-  background: var(--cor4);
-  border: none;
-
-  color: var(--cor1);
-
-  cursor: pointer;
-}
-
-.toggle-option {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-}
-
-.toggle-option button {
-  display: flex;
-  background: none;
-  border: none;
-
-  cursor: pointer;
-}
-
-.toggle-option span {
-  color: #7ff26d;
-  font-size: 2.5rem;
-}
-
-.color-option {
-  display: flex;
-  gap: 15px;
-}
-
-.color-option button {
-  width: 20px;
-  height: 20px;
-
-  border: none;
-  border-radius: 50%;
-
-  cursor: pointer;
-  color: #202020;
-}
-
-.thermal {
-  background: linear-gradient(110deg, #ff0000, #ffa500, #ffff00);
-}
-
-.cavern {
-  background: linear-gradient(110deg, #000000, #202020, #000000);
-}
-
-.ice {
-  background: linear-gradient(110deg, #6048cf, #4f76be, #4f98c9);
-}
-
-.green {
-  color: #991818;
+.settings-screen {
+  display: none;
 }
