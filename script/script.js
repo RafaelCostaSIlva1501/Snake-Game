@@ -1,45 +1,13 @@
-const canvas = document.getElementById("canvas"); //Canvas
-const ctx = canvas.getContext("2d"); //Contexto do canvas
-
-const startScreen = document.querySelector(".start-screen");
-const gameoverScreen = document.querySelector(".end-screen");
-const settingsScreen = document.querySelector(".settings-screen");
-
-const btnPlayGame = document.querySelector(".play-game"); //Botão que inicia o jogo
-const btnPlayAgain = document.querySelector(".play-again"); //Botão que reinicia o jogo
-
-const btnOpenSettings = document.querySelector(".open-settings"); //Botão para abrir o modal de configurações
-const btnCloseSettings = document.querySelectorAll(".close-settings"); //Botão para fecha o modal de configurações
-
-const Dpad = document.querySelector(".dpad");
-const btnUp = document.querySelector(".up");
-const btnRight = document.querySelector(".right");
-const btnDown = document.querySelector(".down");
-const btnLeft = document.querySelector(".left");
-
-const score = document.querySelector(".score");
-const finalScore = document.querySelector(".final-score");
-
-const buttonBackgroundColor = document.querySelectorAll(
-  ".button-background-color"
-);
-const buttonSnakeColor = document.querySelectorAll(".button-snake-color");
-const buttonFoodColor = document.querySelectorAll(".button-food-color");
-
-const buttonGrid = document.querySelector(".button-grid");
-const buttonCollision = document.querySelector(".button-collision");
-
-const toggleButton = document.querySelectorAll(".toggle-button");
-
-const buttonSpeed = document.querySelectorAll(".button-speed");
+import { DOM } from "./DOM.js";
+import { snake } from "./snake.js";
 
 /*-----Configurações do canvas-----*/
 const size = 10; //Tamanho dos elementos no jogo
 
 // Tamanho do canvas
 let canvasSize = {
-  x: canvas.width,
-  y: canvas.height,
+  x: DOM.canvas.width,
+  y: DOM.canvas.height,
 };
 
 const canvasLimitX = canvasSize.x - size; //Limite horizontal do canvas
@@ -111,19 +79,6 @@ let colorSnake = {
   colorHead: "#77c21c",
 };
 
-const drawSnake = () => {
-  //Desenha a cobrinha dentro do canvas
-  ctx.fillStyle = colorSnake.colorBody;
-
-  snake.forEach(function (position, index) {
-    if (index == snake.length - 1) {
-      ctx.fillStyle = colorSnake.colorHead;
-    }
-
-    ctx.fillRect(position.x, position.y, size, size);
-  });
-};
-
 /*-----Configurações de movimento-----*/
 
 let moveON = true; //Liga e desliga o movimento da cobrinha
@@ -150,26 +105,6 @@ const moveSnake = () => {
     snake.push({ x: headSnake.x, y: headSnake.y - size });
   }
 };
-
-//Botão no D-pad para movimentar para cima
-btnUp.addEventListener("click", () => {
-  direction = "up";
-});
-
-//Botão no D-pad para movimentar para direita
-btnRight.addEventListener("click", () => {
-  direction = "right";
-});
-
-//Botão no D-pad para movimentar para baixo
-btnDown.addEventListener("click", () => {
-  direction = "down";
-});
-
-//Botão no D-pad para movimentar para esquerda
-btnLeft.addEventListener("click", () => {
-  direction = "left";
-});
 
 //Botões do teclado para movimentar a cobrinha
 document.addEventListener("keydown", (event) => {
@@ -303,7 +238,7 @@ const checkEat = () => {
   scoreUpdate();
 };
 
-let scoreAtual = 0
+let scoreAtual = 0;
 
 //Atualiza o score
 const scoreUpdate = () => {
@@ -353,7 +288,7 @@ let gameInterval;
 
 //Dá início ao jogo
 const playGame = () => {
-  scoreAtual = 0
+  scoreAtual = 0;
 
   if (window.innerHeight > window.innerWidth) {
     Dpad.style.display = "grid";
