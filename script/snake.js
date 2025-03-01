@@ -1,8 +1,11 @@
+import { DOM } from "./DOM.js";
+import { canvas } from "./canvas.js";
+
 export const snake = {
-    // Corpo da cobra
+  // Corpo da cobra
   body: [
-    { x: 10, y: 10 },
-    { x: 20, y: 10 },
+    { x: 20, y: 20 },
+    { x: 40, y: 20 },
   ],
 
   // Cabeça da cobra
@@ -11,29 +14,56 @@ export const snake = {
     return head;
   },
 
+  size: 20,
+
   // Cores da cobra
   color: {
-    head: "#77c21c", // Cor da cabeça
-    body: "#83d420", // Cor do corpo
+    head: "#7CCF00", // Cor da cabeça
+    body: "#9AE600", // Cor do corpo
+    border: "#3C6300", // Cor da borda
   },
 
+  // Direção da cobra
+  direction: "",
+
   // Função que desenha a cobra
-  draw: function () {
-    // Desenha a cobra dentro do canvas
-    ctx.fillStyle = this.color.body; // Define a cor do corpo
+  draw: function (style) {
+    if (style === "border") {
+      this.body.forEach((position, index) => {
+        // Define a cor da cabeça e do corpo
+        DOM.ctx.fillStyle =
+          index === this.body.length - 1 ? this.color.head : this.color.body;
 
-    this.body.forEach((position, index) => {
-      if (index === this.body.length - 1) {
-        ctx.fillStyle = this.color.head;
-      }
+        // Desenha o corpo/cabeça com borda
+        DOM.ctx.fillRect(position.x, position.y, this.size, this.size);
 
-      ctx.fillRect(position.x, position.y, size, size); // Desenha cada segmento
-    });
+        // Adiciona borda preta para separar os segmentos
+        DOM.ctx.strokeStyle = this.color.border;
+        DOM.ctx.lineWidth = 2;
+        DOM.ctx.strokeRect(position.x, position.y, this.size, this.size);
+      });
+    }
+
+    if (style === "lgbt") {
+      this.body.forEach((position, index) => {
+        const colors = [
+          "#FF0000",
+          "#FF7F00",
+          "#FFFF00",
+          "#00FF00",
+          "#0000FF",
+          "#4B0082",
+          "#9400D3",
+        ];
+        DOM.ctx.fillStyle = colors[index % colors.length]; // Alterna entre as cores do arco-íris
+        DOM.ctx.fillRect(position.x, position.y, this.size, this.size);
+      });
+    }
   },
 
   // Função que move a cobra
-  move: function (direction) {
-    if (!direction) return; // Se a direção não for definida, não faz nada.
+  move: function () {
+    if (!this.direction) return; // Se a direção não for definida, não faz nada.
 
     const headSnake = this.body[this.body.length - 1]; // Acessa a cabeça da cobrinha.
 
@@ -41,17 +71,22 @@ export const snake = {
     this.body.shift();
 
     // Adiciona um novo segmento dependendo da direção
-    if (direction === "right") {
-      this.body.push({ x: headSnake.x + size, y: headSnake.y });
-    } else if (direction === "down") {
-      this.body.push({ x: headSnake.x, y: headSnake.y + size });
-    } else if (direction === "left") {
-      this.body.push({ x: headSnake.x - size, y: headSnake.y });
-    } else if (direction === "up") {
-      this.body.push({ x: headSnake.x, y: headSnake.y - size });
+    if (this.direction === "right") {
+      this.body.push({ x: headSnake.x + canvas.block, y: headSnake.y });
+    } else if (this.direction === "down") {
+      this.body.push({ x: headSnake.x, y: headSnake.y + canvas.block });
+    } else if (this.direction === "left") {
+      this.body.push({ x: headSnake.x - canvas.block, y: headSnake.y });
+    } else if (this.direction === "up") {
+      this.body.push({ x: headSnake.x, y: headSnake.y - canvas.block });
     }
   },
 
-  // Direção da cobra
-  direction: "",
+  grow: function () {
+    snake.body.push(snake.head());
+  },
+
+  reduce: function () {
+    snake.body.shift(snake.head());
+  },
 };

@@ -1,413 +1,99 @@
 import { DOM } from "./DOM.js";
+import { canvas } from "./canvas.js";
+import { food } from "./food.js";
+import { settings } from "./settings.js";
 import { snake } from "./snake.js";
 
-/*-----Configurações do canvas-----*/
-const size = 10; //Tamanho dos elementos no jogo
-
-// Tamanho do canvas
-let canvasSize = {
-  x: DOM.canvas.width,
-  y: DOM.canvas.height,
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+// Define o tema do jogo
+const theme = (num) => {
+  DOM.main.style.background = `linear-gradient(to bottom, ${settings.themes[num][3]}, ${settings.themes[num][4]}, ${settings.themes[num][3]})`;
+  DOM.gameHeader.style.backgroundColor = settings.themes[num][1];
+  DOM.gameScreen.style.backgroundColor = settings.themes[num][2];
+  canvas.color[0] = settings.themes[num][3];
+  canvas.color[1] = settings.themes[num][4];
 };
 
-const canvasLimitX = canvasSize.x - size; //Limite horizontal do canvas
-const canvasLimitY = canvasSize.y - size; //Limite vertical do canvas
-
-//Cor de fundo do jogo
-let colorGame = {
-  color1: "white",
-  color2: "white",
-  color3: "white",
-};
-
-const drawBackground = () => {
-  //Define a cor de fundo do canvas
-  const gradient = ctx.createLinearGradient(0, 0, canvasSize.x, canvasSize.y);
-
-  gradient.addColorStop(0, colorGame.color1);
-  gradient.addColorStop(0.5, colorGame.color2);
-  gradient.addColorStop(1, colorGame.color3);
-
-  // Define o gradiente como estilo de preenchimento
-  ctx.fillStyle = gradient;
-
-  // Desenha um retângulo preenchido com o gradiente
-  ctx.fillRect(0, 0, canvasSize.x, canvasSize.y);
-};
-
-let grid = {
-  color: "#000000bd",
-  size: 0.2,
-  state: true,
-};
-
-const drawGrid = () => {
-  //Tamanho das linhas e cor do grid
-  ctx.lineWidth = grid.size;
-  ctx.strokeStyle = grid.color;
-
-  if (grid.state) {
-    for (let i = size; i < canvasSize.x; i += size) {
-      //Desenha linhas na vertical
-      ctx.beginPath();
-      ctx.lineTo(i, 0);
-      ctx.lineTo(i, canvasSize.x);
-      ctx.stroke();
-    }
-
-    for (let i = size; i < canvasSize.x; i += size) {
-      //Desenha linhas na vertical
-      ctx.beginPath();
-      ctx.lineTo(0, i);
-      ctx.lineTo(canvasSize.x, i);
-      ctx.stroke();
-    }
-  }
-};
-
-/*-----Configurações da cobrinha-----*/
-
-//Tamanho inicial da cobrinha
-let snake = [
-  { x: 10, y: 10 },
-  { x: 20, y: 10 },
-];
-
-//Cor da cobrinha
-let colorSnake = {
-  colorBody: "#83d420",
-  colorHead: "#77c21c",
-};
-
-/*-----Configurações de movimento-----*/
-
-let moveON = true; //Liga e desliga o movimento da cobrinha
-
-let direction = ""; //Direção da cobrinha
-
-snakeSpeed = 150; //Velocidade da cobrinha
-
-//Controla para qual direção a cobra deve se mover
-const moveSnake = () => {
-  if (!direction) return;
-
-  const headSnake = snake[snake.length - 1];
-
-  snake.shift();
-
-  if (direction == "right") {
-    snake.push({ x: headSnake.x + size, y: headSnake.y });
-  } else if (direction == "down") {
-    snake.push({ x: headSnake.x, y: headSnake.y + size });
-  } else if (direction == "left") {
-    snake.push({ x: headSnake.x - size, y: headSnake.y });
-  } else if (direction == "up") {
-    snake.push({ x: headSnake.x, y: headSnake.y - size });
-  }
-};
-
-//Botões do teclado para movimentar a cobrinha
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+// Controla o movimento da cobra
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowUp" && direction !== "down") {
-    direction = "up";
-  } else if (event.key === "ArrowDown" && direction !== "up") {
-    direction = "down";
-  } else if (event.key === "ArrowLeft" && direction !== "right") {
-    direction = "left";
-  } else if (event.key === "ArrowRight" && direction !== "left") {
-    direction = "right";
+  if (event.key === "ArrowUp" && snake.direction !== "down") {
+    snake.direction = "up";
+  } else if (event.key === "ArrowDown" && snake.direction !== "up") {
+    snake.direction = "down";
+  } else if (event.key === "ArrowLeft" && snake.direction !== "right") {
+    snake.direction = "left";
+  } else if (event.key === "ArrowRight" && snake.direction !== "left") {
+    snake.direction = "right";
   }
 });
 
-/*-----Configurações da comida-----*/
-
-let colorFood = "#cc1d1d"; //Cor da comida
-
-//Comida inicial
-const numRandom = (min, max) => {
-  return Math.round(Math.random() * (max - min) + min);
-};
-
-const numPositionX = () => {
-  const num = numRandom(0, canvasSize.x - size);
-  return Math.round(num / 10) * 10;
-};
-
-const numPositionY = () => {
-  const num = numRandom(0, canvasSize.y - size);
-  return Math.round(num / 10) * 10;
-};
-
-//Posição da comida
-const food = {
-  x: numPositionX(),
-  y: numPositionY(),
-};
-
-//Desenha a comida dentro do canvas
-const drawFood = () => {
-  ctx.shadowColor = colorFood;
-  ctx.shadowBlur = 20;
-  ctx.fillStyle = colorFood;
-
-  ctx.fillRect(food.x, food.y, size, size);
-
-  ctx.shadowColor = colorSnake.colorBody;
-  ctx.shadowBlur = 10;
-};
-
-/*-----Configurações de colisão-----*/
-
-let selfCollisionON = true; //Liga e desliga a colisão consigo
-
-const foodCollision = () => {
-  //Define a cabeça da cobra para colisão
-  const headSnake = snake[snake.length - 1];
-
-  //Colisão com a comida
-  const foodCollision = headSnake.x == food.x && headSnake.y == food.y;
-
-  if (foodCollision) {
-    checkEat();
-  }
-
-  playAudio();
-};
-
-const wallCollision = () => {
-  //Define a cabeça da cobra para colisão
-  const headSnake = snake[snake.length - 1];
-
-  //Define o limite do canvas
-  const canvasLimitX = canvasSize.x - size;
-  const canvasLimitY = canvasSize.y - size;
-
-  //Colisão com as paredes
-  const wallCollision =
-    headSnake.x < 0 ||
-    headSnake.x > canvasLimitX ||
-    headSnake.y < 0 ||
-    headSnake.y > canvasLimitY;
-
-  if (wallCollision) {
-    gameOver();
-  }
-};
-
-const selfCollision = () => {
-  //Define a cabeça da cobra para colisão
-  const headSnake = snake[snake.length - 1];
-
-  const selfCollision = snake.find((position, index) => {
-    return (
-      index < snake.length - 2 &&
-      position.x == headSnake.x &&
-      position.y == headSnake.y
-    );
-  });
-
-  if (selfCollision && selfCollisionON) {
-    gameOver();
-  }
-};
-
-const collision = () => {
-  foodCollision();
-  wallCollision();
-  selfCollision();
-};
-
-/*-----Resultados das colisões-----*/
-
-//Atualiza posição da comida
-const checkEat = () => {
-  const headSnake = snake[snake.length - 1];
-  snake.push(headSnake);
-
-  let x = numPositionX();
-  let y = numPositionY();
-
-  while (snake.find((position) => position.x == x && position.y == y)) {
-    x = numPositionX();
-    y = numPositionY();
-  }
-
-  food.x = x;
-  food.y = y;
-
-  scoreUpdate();
-};
-
-let scoreAtual = 0;
-
-//Atualiza o score
-const scoreUpdate = () => {
-  scoreAtual += 10;
-
-  score.innerHTML = "" + scoreAtual;
-};
-
-//Termina o jogo
-const gameOver = () => {
-  moveON = false;
-  direction = undefined;
-
-  score.innerHTML = "0";
-  finalScore.innerHTML = scoreAtual;
-
-  canvas.style.display = "none";
-  gameoverScreen.style.display = "flex";
-};
-
-//Botão para reiniciar o jogo
-btnPlayAgain.addEventListener("click", () => {
-  clearInterval(gameInterval);
-  moveON = true;
-
-  snake = [
-    { x: 10, y: 10 },
-    { x: 20, y: 10 },
-  ];
-
-  gameoverScreen.style.display = "none";
-  startScreen.style.display = "flex";
-});
-
-/*-----Configurações para iniciar o jogo-----*/
-
-//Desenha os elementos do canvas
-const draw = () => {
-  drawBackground();
-  drawGrid();
-  drawSnake();
-  drawFood();
-};
-
-//intervalo do jogo
-let gameInterval;
-
-//Dá início ao jogo
-const playGame = () => {
-  scoreAtual = 0;
-
-  if (window.innerHeight > window.innerWidth) {
-    Dpad.style.display = "grid";
-  }
-
-  const food = {
-    x: numPositionX(),
-    y: numPositionY(),
-  };
-
-  gameInterval = setInterval(() => {
-    ctx.clearRect(0, 0, canvasSize.x, canvasSize.y);
-
-    draw();
-
-    if (moveON) {
-      moveSnake();
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+// Lógica de colisão da cobra com a comida
+const collisionFood = () => {
+  // Se a cobra pegar a comida ela cresce e uma nova comida é gerada
+  if (snake.head().x == food.position.x && snake.head().y == food.position.y) {
+    // Uma nova comida é gerada, mas nunca em cima da cobra
+    while (
+      snake.body.some(
+        (position) =>
+          position.x === food.position.x && position.y === food.position.y
+      )
+    ) {
+      // Gera uma nova comida
+      food.spawn();
     }
-    collision();
-  }, snakeSpeed);
-};
 
-//Botão para iniciar o jogo
-btnPlayGame.addEventListener("click", () => {
-  startScreen.style.display = "none";
-  canvas.style.display = "flex";
-
-  playGame();
-});
-
-/*-----Configurações de jogo-----*/
-
-//Botão para abrir o menu de configurações
-btnOpenSettings.addEventListener("click", () => {
-  settingsScreen.style.display = "flex";
-  startScreen.style.display = "none";
-});
-
-btnCloseSettings.forEach((e) => {
-  e.addEventListener("click", () => {
-    moveON = true;
-
-    settingsScreen.style.display = "none";
-    startScreen.style.display = "flex";
-  });
-});
-
-//Altera a cor de fundo
-buttonBackgroundColor.forEach((e) => {
-  e.addEventListener("click", () => {
-    colorGame.color1 = e.dataset.color1;
-    colorGame.color2 = e.dataset.color2;
-    colorGame.color3 = e.dataset.color3;
-  });
-});
-
-//Altera a cor da cobrinha
-buttonSnakeColor.forEach((e) => {
-  e.addEventListener("click", () => {
-    colorSnake.colorHead = e.dataset.color1;
-    colorSnake.colorBody = e.dataset.color2;
-  });
-});
-
-//Altera a cor da comida
-buttonFoodColor.forEach((e) => {
-  e.addEventListener("click", () => {
-    colorFood = e.dataset.color;
-  });
-});
-
-buttonGrid.addEventListener("click", () => {
-  grid.state = !grid.state; // Alterna o valor de gridON
-
-  toggleButton[0].innerHTML = grid.state ? "toggle_on" : "toggle_off";
-  toggleButton[0].style.color = grid.state ? "#53d831" : "#747474";
-});
-
-buttonCollision.addEventListener("click", () => {
-  selfCollisionON = !selfCollisionON; // Alterna o valor de selfCollisionON
-
-  toggleButton[1].innerHTML = selfCollisionON ? "toggle_on" : "toggle_off";
-  toggleButton[1].style.color = selfCollisionON ? "#53d831" : "#747474";
-});
-
-// Altera a velocidade da cobrinha
-buttonSpeed.forEach((e, index) => {
-  // Define uma cor específica para o segundo botão ao iniciar
-  if (index === 1) {
-    e.style.backgroundColor = "#368a20"; // Cor inicial para o segundo botão
+    // Aumenta o tamanho da cobra
+    snake.grow();
+    score();
   }
-
-  e.addEventListener("click", () => {
-    clearInterval(gameInterval);
-    snakeSpeed = parseInt(e.dataset.speed);
-
-    // Reseta as cores de todos os botões
-    buttonSpeed.forEach((e) => {
-      e.style.backgroundColor = "#53d831";
-    });
-
-    // Destaca o botão clicado
-    e.style.backgroundColor = "#368a20";
-  });
-});
-
-/*-----Efeitos sonoros-----*/
-
-const playAudio = (audioFile, elementClass, event) => {
-  const buttons = document.querySelectorAll(`.${elementClass}`);
-
-  buttons.forEach((button) => {
-    button.addEventListener(event, () => {
-      const audio = new Audio(`../audio/${audioFile}.wav`);
-      audio.play();
-    });
-  });
 };
 
-playAudio("sound-hover-button", "play-game", "mouseover");
-playAudio("sound-hover-button", "open-settings", "mouseover");
-playAudio("sound-hover-button", "play-again", "mouseover");
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+const score = () => {
+  settings.score[0] = settings.score[0] + 1;
+  settings.score[1] = settings.score[0];
+
+  DOM.score.innerHTML = settings.score[0];
+  DOM.lastScore.innerHTML = settings.score[1];
+};
+
+const resetScore = () => {
+  settings.score[0] = 0;
+
+  DOM.score.innerHTML = 0;
+};
+
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+const draw = () => {
+  canvas.drawBackground();
+  snake.draw("border");
+  food.draw();
+};
+
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+// Inicia o jogo
+const loopGame = () => {
+  draw();
+  snake.move();
+  collisionFood();
+  theme(0);
+};
+
+DOM.btnPlayGame.addEventListener("click", () => {
+  DOM.startScreen.style.display = "none";
+
+  food.spawn();
+
+  // Loop para rodar o jogo
+  const intervalo = setInterval(() => {
+    loopGame();
+  }, 100);
+});

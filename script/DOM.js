@@ -2,6 +2,10 @@ export const DOM = {
   canvas: document.getElementById("canvas"),
   ctx: document.getElementById("canvas").getContext("2d"),
 
+  main: document.querySelector(".main"),
+
+  gameScreen: document.querySelector(".game-screen"),
+  gameHeader: document.querySelector(".game-header"),
   startScreen: document.querySelector(".start-screen"),
   gameoverScreen: document.querySelector(".end-screen"),
   settingsScreen: document.querySelector(".settings-screen"),
@@ -13,7 +17,7 @@ export const DOM = {
   btnCloseSettings: document.querySelectorAll(".close-settings"),
 
   score: document.querySelector(".score"),
-  finalScore: document.querySelector(".final-score"),
+  lastScore: document.querySelector(".last-score"),
 
   buttonBackgroundColor: document.querySelectorAll(".button-background-color"),
   buttonSnakeColor: document.querySelectorAll(".button-snake-color"),
