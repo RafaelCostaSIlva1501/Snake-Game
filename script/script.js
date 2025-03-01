@@ -89,6 +89,7 @@ const loopGame = () => {
 
 DOM.btnPlayGame.addEventListener("click", () => {
   DOM.startScreen.style.display = "none";
+  DOM.gameHeader.style.display = "flex"
 
   food.spawn();
 
