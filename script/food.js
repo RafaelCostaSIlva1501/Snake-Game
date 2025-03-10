@@ -10,14 +10,20 @@ export const food = {
   },
 
   generate: function () {
-    return (
-      Math.floor(Math.random() * (canvas.size.x / canvas.block)) * canvas.block
-    );
+    // Gera a posição aleatória dentro do tamanho do canvas
+    const x =
+      Math.floor(Math.random() * (DOM.canvas.width / canvas.block)) *
+      canvas.block;
+    const y =
+      Math.floor(Math.random() * (DOM.canvas.height / canvas.block)) *
+      canvas.block;
+
+    return { x, y };
   },
 
   spawn: function () {
-    this.position.x = this.generate();
-    this.position.y = this.generate();
+    this.position.x = this.generate().x;
+    this.position.y = this.generate().y;
   },
 
   draw: function () {

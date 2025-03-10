@@ -19,10 +19,37 @@
       <a href="https://rafaelcostasilva1501.github.io/Mini-Game/">
         <span class="material-symbols-outlined">arrow_back </span>
       </a>
+
       <h1>Snake Game</h1>
+
+      <a
+        href="https://github.com/RafaelCostaSIlva1501/Snake-Game"
+        target="_blank"
+      >
+        <img src="img/github.png" alt="Logo do Github" />
+      </a>
     </header>
 
     <main class="main">
+      <div class="start-screen">
+        <button class="play-game">
+          <span>J</span>
+          <span>O</span>
+          <span>G</span>
+          <span>A</span>
+          <span>R</span>
+        </button>
+
+        <button class="open-settings">
+          <span>O</span>
+          <span>P</span>
+          <span>Ç</span>
+          <span>Õ</span>
+          <span>E</span>
+          <span>S</span>
+        </button>
+      </div>
+
       <section class="game-screen">
         <header class="game-header">
           <div>
@@ -56,170 +83,47 @@
           </div>
         </header>
 
-        <div class="start-screen">
-          <button class="play-game">
-            <span>J</span>
-            <span>O</span>
-            <span>G</span>
-            <span>A</span>
-            <span>R</span>
-          </button>
-
-          <button class="open-settings">
-            <span>O</span>
-            <span>P</span>
-            <span>Ç</span>
-            <span>Õ</span>
-            <span>E</span>
-            <span>S</span>
-          </button>
-        </div>
-
-        <canvas id="canvas" width="350" height="350"></canvas>
-
-        <div class="end-screen">
-          <h2>SCORE FINAL: <span class="final-score">0</span></h2>
-          <button class="play-again">Jogar Novamente</button>
-        </div>
-
-        <div class="settings-screen">
-          <header>
-            <span>Opções</span>
-
-            <button class="close-settings">
-              <span class="material-symbols-outlined">close</span>
-            </button>
-          </header>
-
-          <section>
-            <div class="color-option">
-              <span>Cor de fundo:</span>
-
-              <button
-                class="button-background-color thermal"
-                data-color1="#ff0000"
-                data-color2="#ffa500"
-                data-color3="#ffff00"
-              ></button>
-
-              <button
-                class="button-background-color cavern"
-                data-color1="#000000"
-                data-color2="#202020"
-                data-color3="#000000"
-              ></button>
-
-              <button
-                class="button-background-color ice"
-                data-color1="#6048cf"
-                data-color2="#4f76be"
-                data-color3="#4f98c9"
-              ></button>
-            </div>
-
-            <div class="color-option">
-              <span>Cor da cobrinha:</span>
-
-              <button
-                style="background-color: #8feb1f"
-                class="button-snake-color"
-                data-color1="#77c21c"
-                data-color2="#83d420"
-              ></button>
-
-              <button
-                style="background-color: #eb1f1f"
-                class="button-snake-color"
-                data-color1="#c21c1c"
-                data-color2="#d42020"
-              ></button>
-
-              <button
-                style="background-color: #1f8feb"
-                class="button-snake-color"
-                data-color1="#1c77c2"
-                data-color2="#2083d4"
-              ></button>
-
-              <button
-                style="background-color: #eb9f1f"
-                class="button-snake-color"
-                data-color1="#c27a1c"
-                data-color2="#d48820"
-              ></button>
-
-              <button
-                style="background-color: #7f1feb"
-                class="button-snake-color"
-                data-color1="#6315b5"
-                data-color2="#731bcf"
-              ></button>
-            </div>
-
-            <div class="color-option">
-              <span>Cor da comida:</span>
-
-              <button
-                style="background-color: #6cb118"
-                class="button-food-color"
-                data-color="#6cb118"
-              ></button>
-
-              <button
-                style="background-color: #cc1d1d"
-                class="button-food-color"
-                data-color="#cc1d1d"
-              ></button>
-
-              <button
-                style="background-color: #196eb4"
-                class="button-food-color"
-                data-color="#196eb4"
-              ></button>
-
-              <button
-                style="background-color: #af7716"
-                class="button-food-color"
-                data-color="#af7716"
-              ></button>
-
-              <button
-                style="background-color: #5914a8"
-                class="button-food-color"
-                data-color="#5914a8"
-              ></button>
-            </div>
-
-            <div class="toggle-option">
-              <span>Linhas de grade:</span>
-
-              <button class="button-grid">
-                <span class="material-symbols-outlined toggle-button"
-                  >toggle_on</span
-                >
-              </button>
-            </div>
-
-            <div class="toggle-option">
-              <span>Colisão com corpo:</span>
-
-              <button class="button-collision">
-                <span class="material-symbols-outlined toggle-button"
-                  >toggle_on</span
-                >
-              </button>
-            </div>
-
-            <div class="speed-option">
-              <span>Velocidade:</span>
-
-              <button class="button-speed" data-speed="210">MIN</button>
-              <button class="button-speed" data-speed="150">PADRÃO</button>
-              <button class="button-speed" data-speed="90">MAX</button>
-            </div>
-          </section>
+        <div class="canvas-screen">
+          <canvas id="canvas"></canvas>
         </div>
       </section>
+
+      <div class="end-screen">
+        <h2>SCORE FINAL: <span class="final-score">0</span></h2>
+
+        <button class="play-again">
+          <span>J</span>
+          <span>O</span>
+          <span>G</span>
+          <span>A</span>
+          <span>R</span>
+          <br />
+          <span>N</span>
+          <span>O</span>
+          <span>V</span>
+          <span>A</span>
+          <span>M</span>
+          <span>E</span>
+          <span>N</span>
+          <span>T</span>
+          <span>E</span>
+        </button>
+
+        <button class="open-settings">
+          <span>O</span>
+          <span>P</span>
+          <span>Ç</span>
+          <span>Õ</span>
+          <span>E</span>
+          <span>S</span>
+        </button>
+      </div>
+
+      <div class="settings-screen">
+        <button class="open-settings">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
     </main>
 
     <script type="module" src="script/script.js"></script>

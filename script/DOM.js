@@ -4,28 +4,18 @@ export const DOM = {
 
   main: document.querySelector(".main"),
 
-  gameScreen: document.querySelector(".game-screen"),
-  gameHeader: document.querySelector(".game-header"),
   startScreen: document.querySelector(".start-screen"),
+  gameScreen: document.querySelector(".game-screen"),
+  canvasScreen: document.querySelector(".canvas-screen"),
+  gameHeader: document.querySelector(".game-header"),
   gameoverScreen: document.querySelector(".end-screen"),
   settingsScreen: document.querySelector(".settings-screen"),
 
   btnPlayGame: document.querySelector(".play-game"),
   btnPlayAgain: document.querySelector(".play-again"),
-
-  btnOpenSettings: document.querySelector(".open-settings"),
-  btnCloseSettings: document.querySelectorAll(".close-settings"),
+  btnSettings: document.querySelectorAll(".open-settings"),
 
   score: document.querySelector(".score"),
   lastScore: document.querySelector(".last-score"),
-
-  buttonBackgroundColor: document.querySelectorAll(".button-background-color"),
-  buttonSnakeColor: document.querySelectorAll(".button-snake-color"),
-  buttonFoodColor: document.querySelectorAll(".button-food-color"),
-
-  buttonGrid: document.querySelector(".button-grid"),
-  buttonCollision: document.querySelector(".button-collision"),
-
-  toggleButton: document.querySelectorAll(".toggle-button"),
-  buttonSpeed: document.querySelectorAll(".button-speed"),
+  finalScore: document.querySelector(".final-score"),
 };

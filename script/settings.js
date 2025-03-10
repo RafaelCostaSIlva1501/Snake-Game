@@ -3,7 +3,7 @@ export const settings = {
   selfCollision: true,
   wallCollision: true,
   score: [0, 0],
-  speed: [],
+  speed: 120,
   themes: [
     ["Selva", "#192E03", "#35530E", "#5EA500", "#BBF451"],
     ["Outono", "#2F1E0A", "#492C0A", "#B05208", "#D38010"],

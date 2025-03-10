@@ -67,9 +67,6 @@ export const snake = {
 
     const headSnake = this.body[this.body.length - 1]; // Acessa a cabeça da cobrinha.
 
-    // Remove o último segmento da cobra
-    this.body.shift();
-
     // Adiciona um novo segmento dependendo da direção
     if (this.direction === "right") {
       this.body.push({ x: headSnake.x + canvas.block, y: headSnake.y });
@@ -80,13 +77,17 @@ export const snake = {
     } else if (this.direction === "up") {
       this.body.push({ x: headSnake.x, y: headSnake.y - canvas.block });
     }
+
+    // Remove o último segmento da cobra
+    this.body.shift();
   },
 
   grow: function () {
-    snake.body.push(snake.head());
+    const headSnake = { ...this.head() }; // Faz uma cópia real da cabeça
+    this.body.push(headSnake);
   },
 
   reduce: function () {
-    snake.body.shift(snake.head());
+    snake.body.shift();
   },
 };
