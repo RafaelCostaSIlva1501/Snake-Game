@@ -48,6 +48,20 @@
           <span>E</span>
           <span>S</span>
         </button>
+
+        <button class="btn-update">
+          <span>V</span>
+          <span>E</span>
+          <span>R</span>
+          <span></span>
+          <span>U</span>
+          <span>P</span>
+          <span>D</span>
+          <span>A</span>
+          <span>T</span>
+          <span>E</span>
+          <span>S</span>
+        </button>
       </div>
 
       <section class="game-screen">
@@ -117,13 +131,126 @@
           <span>E</span>
           <span>S</span>
         </button>
+
+        <button class="btn-update">
+          <span>V</span>
+          <span>E</span>
+          <span>R</span>
+          <span></span>
+          <span>U</span>
+          <span>P</span>
+          <span>D</span>
+          <span>A</span>
+          <span>T</span>
+          <span>E</span>
+          <span>S</span>
+        </button>
       </div>
 
       <div class="settings-screen">
-        <button class="open-settings">
-          <span class="material-symbols-outlined">close</span>
-        </button>
+        <header>
+          <h2>OPÇÕES</h2>
+
+          <button class="open-settings">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </header>
+
+        <section class="theme">
+          <h2>Temas</h2>
+
+          <div>
+            <button class="btn-theme">
+              <img src="img/themes/jungle-icon.png" alt="Ícone selva">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/fall-icon.png" alt="Ícone outono">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/artic-icon.png" alt="Ícone ártico">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/vulcan-icon.png" alt="Ícone vulcão">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/night-icon.png" alt="Ícone noite">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/desert-icon.png" alt="Ícone deserto">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/galaxy-icon.png" alt="Ícone galáxia">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/cave-icon.png" alt="Ícone caverna">
+            </button>
+            
+            <button class="btn-theme">
+              <img src="img/themes/ocean-icon.png" alt="Ícone oceano">
+            </button>
+
+            <button class="btn-theme">
+              <img src="img/themes/toxic-icon.png" alt="Ícone tóxico">
+            </button>
+          </div>
+        </section>
       </div>
+
+      <article class="update">
+        <header>
+          <h2>THEME UPDATE</h2>
+          <button class="btn-update">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </header>
+
+        <section>
+          <h2>NOVOS TEMAS</h2>
+
+          <ul>
+            <li>Selva</li>
+            <li>Outono</li>
+            <li>Ártico</li>
+            <li>Vulcânico</li>
+            <li>Noite</li>
+            <li>Deserto</li>
+            <li>Nebulosa</li>
+            <li>Caverna</li>
+            <li>Oceano</li>
+            <li>Tóxico</li>
+          </ul>
+
+          <h2>CORREÇÂO DE BUGS</h2>
+          <strong>
+            <h3>- Correção de Bug: Direções Opostas</h3>
+          </strong>
+          <p>
+            Corrigido um erro onde a cobrinha se movia para a direção oposta
+            rapidamente, atravessando seu corpo. Agora, a cobrinha não pode mais
+            mudar diretamente para a direção oposta.
+          </p>
+
+          <strong>
+            <h3>- Correção de Bug: Colisão Prematura</h3>
+          </strong>
+          <p>
+            Corrigido um problema onde a cobrinha morria antes de alcançar os
+            limites do canvas. Agora, a colisão só ocorre quando a cabeça da
+            cobrinha realmente atinge a borda do tabuleiro.
+          </p>
+        </section>
+
+        <footer>
+          <a href="update/updates.html">VER MAIS!</a>
+        </footer>
+      </article>
     </main>
 
     <script type="module" src="script/script.js"></script>

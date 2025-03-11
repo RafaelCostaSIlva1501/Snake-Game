@@ -2,6 +2,7 @@ import { DOM } from "./DOM.js";
 import { canvas } from "./canvas.js";
 import { food } from "./food.js";
 import { settings } from "./settings.js";
+import { env } from "./settings.js";
 import { snake } from "./snake.js";
 
 const display = (section, display) => {
@@ -9,26 +10,47 @@ const display = (section, display) => {
 };
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+DOM.btnTheme.forEach((e, i) => {
+  e.addEventListener("click", () => {
+    env.themeIndex = i;
+
+    // Reseta a escala de todos os botões antes de aplicar ao selecionado
+    DOM.btnTheme.forEach((element) => {
+      element.style.transform = "none";
+      element.style.background = "none"
+    });
+
+    // Aplica o efeito ao botão clicado
+    e.style.transform = "scale(1.2)";
+    e.style.backgroundColor = "#ffffff3a"
+  });
+});
+
 // Define o tema do jogo
-const theme = (num) => {
-  DOM.gameHeader.style.backgroundColor = settings.themes[num][1];
-  DOM.gameScreen.style.backgroundColor = settings.themes[num][2];
-  canvas.color[0] = settings.themes[num][3];
-  canvas.color[1] = settings.themes[num][4];
+const theme = () => {
+  DOM.gameHeader.style.backgroundColor = settings.themes[env.themeIndex][1];
+  DOM.gameScreen.style.backgroundColor = settings.themes[env.themeIndex][2];
+  canvas.color[0] = settings.themes[env.themeIndex][3];
+  canvas.color[1] = settings.themes[env.themeIndex][4];
 };
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+let prevDirection = "";
+
 // Controla o movimento da cobra
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowUp" && snake.direction !== "down") {
+  if (event.key === "ArrowUp" && prevDirection !== "down") {
     snake.direction = "up";
-  } else if (event.key === "ArrowDown" && snake.direction !== "up") {
+  } else if (event.key === "ArrowDown" && prevDirection !== "up") {
     snake.direction = "down";
-  } else if (event.key === "ArrowLeft" && snake.direction !== "right") {
+  } else if (event.key === "ArrowLeft" && prevDirection !== "right") {
     snake.direction = "left";
-  } else if (event.key === "ArrowRight" && snake.direction !== "left") {
+  } else if (event.key === "ArrowRight" && prevDirection !== "left") {
     snake.direction = "right";
   }
+
+  prevDirection = snake.direction;
 });
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
@@ -143,7 +165,7 @@ const loopGame = () => {
     foodCollision();
     wallCollision();
     selfCollision();
-    theme(0);
+    theme();
     draw();
   }, settings.speed);
 };
@@ -172,8 +194,31 @@ let settingsDisplay = false;
 
 DOM.btnSettings.forEach((e) => {
   e.addEventListener("click", () => {
-    display("settingsScreen", "flex");
-    display("startScreen", "none");
-    display("gameoverScreen", "none");
+    settingsDisplay = !settingsDisplay;
+
+    settingsDisplay
+      ? display("settingsScreen", "flex")
+      : display("settingsScreen", "none");
   });
 });
+
+// Inicializa 'updateVerification' como "false" caso ainda não tenha sido definido
+if (localStorage.getItem("updateVerification") === null) {
+  localStorage.setItem("updateVerification", "false");
+}
+
+let updateDisplay = false;
+
+DOM.btnUpdate.forEach((e) => {
+  e.addEventListener("click", () => {
+    updateDisplay = !updateDisplay;
+
+    updateDisplay ? display("update", "flex") : display("update", "none");
+    localStorage.setItem("updateVerification", "true");
+  });
+});
+
+// Verifica se 'updateVerification' é "true" e esconde o anúncio
+if (localStorage.getItem("updateVerification") === "true") {
+  DOM.update.style.display = "none";
+}

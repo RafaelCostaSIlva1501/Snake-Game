@@ -18,4 +18,9 @@ export const DOM = {
   score: document.querySelector(".score"),
   lastScore: document.querySelector(".last-score"),
   finalScore: document.querySelector(".final-score"),
+
+  btnTheme: document.querySelectorAll(".btn-theme"),
+
+  update: document.querySelector(".update"),
+  btnUpdate: document.querySelectorAll(".btn-update"),
 };
