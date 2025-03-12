@@ -1,59 +1,90 @@
+// Importando módulos
 import { DOM } from "./DOM.js";
 import { canvas } from "./canvas.js";
-import { food } from "./food.js";
 import { settings } from "./settings.js";
 import { env } from "./settings.js";
 import { snake } from "./snake.js";
+import { food } from "./food.js";
 
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+// Função para mostrar ou ocultar elementos da interface de forma simplificada
 const display = (section, display) => {
   DOM[section].style.display = display;
 };
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
 
-DOM.btnTheme.forEach((e, i) => {
+// Se a chave 'updateVerification' ainda não existir no localStorage, inicializa como "false".
+// Isso garante que o anúncio de atualização será exibido na primeira execução do jogo.
+if (localStorage.getItem("updateVerification") === null) {
+  localStorage.setItem("updateVerification", "false");
+}
+
+// Adiciona um evento de clique a cada botão para vizualizar a atualização.
+DOM.btnUpdate.forEach((e) => {
   e.addEventListener("click", () => {
-    env.themeIndex = i;
+    // Alterna a visibilidade da seção de atualização.
+    env.updateDisplay = !env.updateDisplay;
 
-    // Reseta a escala de todos os botões antes de aplicar ao selecionado
-    DOM.btnTheme.forEach((element) => {
-      element.style.transform = "none";
-      element.style.background = "none"
-    });
+    // Se 'env.updateDisplay' for true, exibe a seção; caso contrário, esconde.
+    env.updateDisplay ? display("update", "flex") : display("update", "none");
 
-    // Aplica o efeito ao botão clicado
-    e.style.transform = "scale(1.2)";
-    e.style.backgroundColor = "#ffffff3a"
+    // Registra no localStorage que o usuário já viu a atualização.
+    localStorage.setItem("updateVerification", "true");
   });
 });
 
-// Define o tema do jogo
+// Se 'updateVerification' estiver como "false", significa que o usuário ainda não viu a atualização.
+// Então, a seção de atualização será exibida automaticamente.
+if (localStorage.getItem("updateVerification") === "false") {
+  DOM.update.style.display = "flex";
+}
+
+/*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
+// Adiciona eventos de clique aos botões de tema
+DOM.btnTheme.forEach((e, i) => {
+  e.addEventListener("click", () => {
+    env.themeIndex = i; // Atualiza o índice do tema selecionado
+
+    // Remove o destaque de todos os botões antes de aplicar ao selecionado
+    DOM.btnTheme.forEach((element) => {
+      element.style.background = "none"; // Reseta o estilo de fundo
+    });
+
+    // Aplica o destaque ao botão clicado
+    e.style.backgroundColor = "#ffffff3a";
+  });
+});
+
+// Função responsável por aplicar o tema selecionado ao jogo
 const theme = () => {
-  DOM.gameHeader.style.backgroundColor = settings.themes[env.themeIndex][1];
-  DOM.gameScreen.style.backgroundColor = settings.themes[env.themeIndex][2];
-  canvas.color[0] = settings.themes[env.themeIndex][3];
-  canvas.color[1] = settings.themes[env.themeIndex][4];
+  DOM.gameHeader.style.backgroundColor = settings.themes[env.themeIndex][1]; // Cor do cabeçalho
+  DOM.gameScreen.style.backgroundColor = settings.themes[env.themeIndex][2]; // Cor do fundo do jogo
+  canvas.color[0] = settings.themes[env.themeIndex][3]; // Cor primária do canvas
+  canvas.color[1] = settings.themes[env.themeIndex][4]; // Cor secundária do canvas
 };
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
-let prevDirection = "";
 
 // Controla o movimento da cobra
 document.addEventListener("keydown", (event) => {
-  if (event.key === "ArrowUp" && prevDirection !== "down") {
-    snake.direction = "up";
-  } else if (event.key === "ArrowDown" && prevDirection !== "up") {
-    snake.direction = "down";
-  } else if (event.key === "ArrowLeft" && prevDirection !== "right") {
-    snake.direction = "left";
-  } else if (event.key === "ArrowRight" && prevDirection !== "left") {
-    snake.direction = "right";
+  if (event.key === "ArrowUp" && snake.direction.prev !== "down") {
+    snake.direction.current = "up";
+  } else if (event.key === "ArrowDown" && snake.direction.prev !== "up") {
+    snake.direction.current = "down";
+  } else if (event.key === "ArrowLeft" && snake.direction.prev !== "right") {
+    snake.direction.current = "left";
+  } else if (event.key === "ArrowRight" && snake.direction.prev !== "left") {
+    snake.direction.current = "right";
   }
 
-  prevDirection = snake.direction;
+  snake.direction.prev = snake.direction.current;
 });
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
+
 // Lógica de colisão da cobra com a comida
 const foodCollision = () => {
   // Se a cobra pegar a comida ela cresce e uma nova comida é gerada
@@ -107,6 +138,13 @@ const selfCollision = () => {
   }
 };
 
+// Encapsula a lógica de colisão
+const collision = () => {
+  foodCollision();
+  wallCollision();
+  selfCollision();
+};
+
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
 const score = () => {
   settings.score[0] = settings.score[0] + 1;
@@ -136,7 +174,7 @@ const draw = () => {
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
 
 const gameOver = () => {
-  clearInterval(gameInterval); // Limpa o intervalo de jogo
+  clearInterval(env.gameInterval); // Limpa o intervalo de jogo
   resetScore(); // Reseta o placar
   display("gameScreen", "none"); // Esconde a tela do jogo
   display("gameoverScreen", "flex"); // Exibe a tela de Game Over
@@ -149,22 +187,18 @@ const gameReset = () => {
     { x: 40, y: 20 },
   ];
 
-  snake.direction = "";
+  snake.direction.current = "";
 };
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
 
 /*-~-~--~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-~-*/
 
-let gameInterval;
-
 // Loop do jogo
 const loopGame = () => {
-  gameInterval = setInterval(() => {
+  env.gameInterval = setInterval(() => {
     snake.move();
-    foodCollision();
-    wallCollision();
-    selfCollision();
+    collision();
     theme();
     draw();
   }, settings.speed);
@@ -190,35 +224,12 @@ DOM.btnPlayAgain.addEventListener("click", () => {
   loopGame();
 });
 
-let settingsDisplay = false;
-
 DOM.btnSettings.forEach((e) => {
   e.addEventListener("click", () => {
-    settingsDisplay = !settingsDisplay;
+    env.settingsDisplay = !env.settingsDisplay;
 
-    settingsDisplay
+    env.settingsDisplay
       ? display("settingsScreen", "flex")
       : display("settingsScreen", "none");
   });
 });
-
-// Inicializa 'updateVerification' como "false" caso ainda não tenha sido definido
-if (localStorage.getItem("updateVerification") === null) {
-  localStorage.setItem("updateVerification", "false");
-}
-
-let updateDisplay = false;
-
-DOM.btnUpdate.forEach((e) => {
-  e.addEventListener("click", () => {
-    updateDisplay = !updateDisplay;
-
-    updateDisplay ? display("update", "flex") : display("update", "none");
-    localStorage.setItem("updateVerification", "true");
-  });
-});
-
-// Verifica se 'updateVerification' é "true" e esconde o anúncio
-if (localStorage.getItem("updateVerification") === "true") {
-  DOM.update.style.display = "none";
-}

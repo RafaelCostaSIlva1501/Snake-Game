@@ -24,7 +24,10 @@ export const snake = {
   },
 
   // Direção da cobra
-  direction: "",
+  direction: {
+    current: "",
+    prev: "",
+  },
 
   // Função que desenha a cobra
   draw: function (style) {
@@ -63,18 +66,18 @@ export const snake = {
 
   // Função que move a cobra
   move: function () {
-    if (!this.direction) return; // Se a direção não for definida, não faz nada.
+    if (!this.direction.current) return; // Se a direção não for definida, não faz nada.
 
     const headSnake = this.body[this.body.length - 1]; // Acessa a cabeça da cobrinha.
 
     // Adiciona um novo segmento dependendo da direção
-    if (this.direction === "right") {
+    if (this.direction.current === "right") {
       this.body.push({ x: headSnake.x + canvas.block, y: headSnake.y });
-    } else if (this.direction === "down") {
+    } else if (this.direction.current === "down") {
       this.body.push({ x: headSnake.x, y: headSnake.y + canvas.block });
-    } else if (this.direction === "left") {
+    } else if (this.direction.current === "left") {
       this.body.push({ x: headSnake.x - canvas.block, y: headSnake.y });
-    } else if (this.direction === "up") {
+    } else if (this.direction.current === "up") {
       this.body.push({ x: headSnake.x, y: headSnake.y - canvas.block });
     }
 

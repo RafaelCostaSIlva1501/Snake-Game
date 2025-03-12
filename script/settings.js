@@ -20,4 +20,7 @@ export const settings = {
 
 export const env = {
   themeIndex: 0,
-}
+  gameInterval: null,
+  settingDisplay: false,
+  updateDisplay: false,
+};
