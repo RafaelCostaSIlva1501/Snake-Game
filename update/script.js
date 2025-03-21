@@ -11,10 +11,20 @@ const infos = [
 const createElement = (tag) => document.createElement(tag);
 
 const container = document.getElementById("container"); // O elemento onde os itens serão inseridos
+const page = document.querySelectorAll(".page");
 
-infos.forEach((info) => {
+infos.forEach((info, index) => {
   const div = createElement("div");
   div.style.backgroundImage = `url(${info.img[0]})`;
+  div.addEventListener("click", () => {
+    page.forEach((e) => {
+      e.style.display = "none";
+    });
+
+    container.style.display = "none";
+
+    page[index].style.display = "flex";
+  });
 
   const span = createElement("span");
   span.innerText = info.title;

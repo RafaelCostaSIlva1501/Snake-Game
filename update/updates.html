@@ -5,16 +5,106 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Notas de atualização</title>
 
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200"
+    />
+
     <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="../style/global.css" />
   </head>
   <body>
-    <header>Snake Game</header>
+    <header class="home-header">
+      <a href="../index.html">
+        <span class="material-symbols-outlined">arrow_back</span>
+      </a>
 
-    <main>
-      <h1>Notas de atualização</h1>
-    </main>
+      <h1>Snake Game</h1>
+
+      <a
+        href="https://github.com/RafaelCostaSIlva1501/Snake-Game"
+        target="_blank"
+      >
+        <img src="../img/github.png" alt="Logo do Github" />
+      </a>
+    </header>
 
     <section id="container"></section>
+
+    <section class="page">
+      <h2>NOVOS TEMAS</h2>
+      <ul>
+        <li>Selva</li>
+        <li>Outono</li>
+        <li>Ártico</li>
+        <li>Vulcânico</li>
+        <li>Noite</li>
+        <li>Deserto</li>
+        <li>Nebulosa</li>
+        <li>Caverna</li>
+        <li>Oceano</li>
+        <li>Tóxico</li>
+      </ul>
+
+      <h2>CORREÇÂO DE BUGS</h2>
+      <strong>
+        <h3>- Correção de Bug: Direções Opostas</h3>
+      </strong>
+      <p>
+        Corrigido um erro onde a cobrinha se movia para a direção oposta
+        rapidamente, atravessando seu corpo. Agora, a cobrinha não pode mais
+        mudar diretamente para a direção oposta.
+      </p>
+
+      <strong>
+        <h3>- Correção de Bug: Colisão Prematura</h3>
+      </strong>
+      <p>
+        Corrigido um problema onde a cobrinha morria antes de alcançar os
+        limites do canvas. Agora, a colisão só ocorre quando a cabeça da
+        cobrinha realmente atinge a borda do tabuleiro.
+      </p>
+
+      <strong>
+        <h3>Correção de Bug: Atualização Prematura do Placar</h3>
+      </strong>
+      <p>
+        Corrigido um problema onde o placar era atualizado antes da cobrinha
+        realmente pegar a comida. Agora, a pontuação só é incrementada após a
+        colisão ser confirmada, garantindo uma exibição precisa do progresso do
+        jogador.
+      </p>
+
+      <h2>MELHORIAS NO CÓDIGO</h2>
+      <p>
+        Foram realizadas diversas melhorias no código para aprimorar sua
+        manutenção, legibilidade e organização. A estrutura foi refinada para
+        tornar o código mais modular, permitindo que futuras alterações sejam
+        feitas de forma mais simples e sem impactos indesejados em outras partes
+        do projeto.
+      </p>
+
+      <p>
+        Além disso, nomes de variáveis e funções foram ajustados para serem mais
+        descritivos, tornando seu propósito mais claro e facilitando a
+        compreensão do fluxo de execução. Comentários também foram adicionados e
+        revisados para garantir explicações mais detalhadas dos trechos-chave do
+        código, ajudando tanto na leitura quanto na manutenção futura.
+      </p>
+
+      <p>
+        Algumas lógicas repetitivas foram refatoradas para evitar redundâncias e
+        melhorar a reutilização do código, tornando-o mais eficiente. Pequenos
+        bugs visuais e lógicos também foram corrigidos, garantindo um
+        funcionamento mais previsível e sem inconsistências.
+      </p>
+
+      <p>
+        Com essas melhorias, o código se torna mais limpo, organizado e fácil de
+        expandir, contribuindo para a evolução contínua do projeto.
+      </p>
+      -->
+    </section>
 
     <script src="script.js"></script>
   </body>
